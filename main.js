@@ -1,4 +1,5 @@
 const express = require('express');
+const socket = require('socket.io');
 const app = express();
 
 let SERVER_PORT = 1337;
@@ -14,3 +15,11 @@ app.get('/', (req, res) => {
     console.log('GET /');
     res.sendFile(__dirname + '/public/main.html');
 });
+
+let io = socket(server);
+
+io.sockets.on('connection', newConnection);
+
+function newConnection(socket){
+    console.log(socket);
+}

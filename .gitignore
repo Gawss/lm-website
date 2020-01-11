@@ -1,5 +1,2 @@
 .vscode/*
-!.vscode/LM-Webpage
-!.vscode/ProjectSettings.json
-!.vscode/slnx.sqlite
 *.code-workspace

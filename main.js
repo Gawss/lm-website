@@ -10,9 +10,7 @@ console.log('Express server listening on port %d in %s mode', server.address().p
 console.log('Server On', __dirname)
 });
 
-let counter = 0;
-app.get('/', (req, res) => {
-    counter++;
+app.get('/', (req, res) => {    
     console.log('GET /');
     res.sendFile(__dirname + '/main.html');
 });

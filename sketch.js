@@ -1,5 +1,3 @@
-import { text } from "express";
-
 var w = window.innerWidth;
 var h = window.innerHeight;
 let canvas;
@@ -23,7 +21,7 @@ function setup() {
 function draw() {
     background(0,3,10);
     fill(255);
-    text(counter,100,100);
+    text("Working!",100,100);
     cube.draw();
     cube2.draw();
     cube3.draw();

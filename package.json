@@ -1,0 +1,30 @@
+{
+  "name": "lm-webpage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gawss/lm-website.git"
+  },
+  "keywords": [
+    "p5",
+    "interactive",
+    "web"
+  ],
+  "author": "Gawss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gawss/lm-website/issues"
+  },
+  "homepage": "https://github.com/Gawss/lm-website#readme",
+  "dependencies": {
+    "express": "6.13.4"
+  },
+  "engines": {
+    "node": "13.6.0"
+  }
+}

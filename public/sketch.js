@@ -32,8 +32,8 @@ function windowResized() {
     w = window.innerWidth;
     h = window.innerHeight;
     cube.setPosition((w/4)*1,(h/4)*3);
-    cube2.setPosition((w/4)*2,(h/4)*1);
-    cube3.setPosition((w/4)*3,(h/4)*1);
+    cube2.setPosition((w/4)*2,(h/4)*3);
+    cube3.setPosition((w/4)*3,(h/4)*3);
 }
 
 function drawLines(){

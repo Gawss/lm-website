@@ -34,7 +34,7 @@ class Cube {
         this.distance = maxDistance - hipothenuse;
         let speed = Math.pow(this.distance*0.0006,2);
             
-        if(angle >= 360){
+        if(this.angle >= 360){
             this.angle = 0;
         }else{
             this.angle += speed;

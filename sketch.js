@@ -1,15 +1,8 @@
+import { text } from "express";
+
 var w = window.innerWidth;
 var h = window.innerHeight;
-let pg;
 let canvas;
-let leftMenu;
-let dGraphic;
-
-let positionX = [];
-let positionY = [];
-
-let distance=0;
-let angle = 0;
 
 let cube;
 let cube2;
@@ -29,6 +22,8 @@ function setup() {
 
 function draw() {
     background(0,3,10);
+    fill(255);
+    text(counter,100,100);
     cube.draw();
     cube2.draw();
     cube3.draw();

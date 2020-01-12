@@ -1,1 +1,0 @@
-var socket = io("https://lm-webpage.herokuapp.com/");

@@ -5,14 +5,19 @@ let canvas;
 let cube;
 let cube2;
 let cube3;
+let counterTxt;
 
 function setup() {
     canvas = createCanvas(w, h);
     canvas.style('display', 'block');
+
+    setUpSocket();
     
     cube = new Cube((w/4)*1,(h/4)*3,30);
     cube2 = new Cube((w/4)*2,(h/4)*3,30);
     cube3 = new Cube((w/4)*3,(h/4)*3,30);
+
+    counterTxt = new CustomText(0, 200,200);
     cube.setUp();
     cube2.setUp();
     cube3.setUp();
@@ -22,6 +27,7 @@ function draw() {
     background(0,3,10);
     fill(255);
     text("Working!",100,100);
+    counterTxt.drawText();
     cube.draw();
     cube2.draw();
     cube3.draw();

@@ -1,5 +1,7 @@
 const express = require('express');
 const socket = require('socket.io');
+var serverData = require('./data');
+
 const app = express();
 
 let SERVER_PORT = 1337;
@@ -7,8 +9,8 @@ let SERVER_PORT = 1337;
 app.use(express.static(__dirname + '/public'));
 
 const server = app.listen(process.env.PORT || SERVER_PORT, () => {
-console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env)
-console.log('Server On', __dirname)
+    console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env)
+    console.log('Server On', __dirname)
 });
 
 app.get('/', (req, res) => {    
@@ -17,14 +19,22 @@ app.get('/', (req, res) => {
 });
 
 let io = socket(server);
-
 io.sockets.on('connection', newConnection);
 
 function newConnection(socket){
-    console.log(socket.id);
+    console.log("New Connection: " + socket.id);
+    updateData();
     socket.on('message', getMessage);
-}
 
-function getMessage(msg){
-    console.log(msg);
+    function updateData(){
+        let newData = serverData.getServerData();
+        newData.counter ++;
+        serverData.setServerData(newData);
+        //socket.broadcast.emit('counter', JSON.stringify(serverData.getServerData()));
+        io.sockets.emit('counter', JSON.stringify(serverData.getServerData()));
+    }
+
+    function getMessage(msg){
+        console.log(msg);
+    }
 }

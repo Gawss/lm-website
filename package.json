@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Gawss/lm-website#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "file-system": "^2.2.2",
     "socket.io": "^2.3.0"
   },
   "engines": {

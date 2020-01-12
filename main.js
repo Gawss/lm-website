@@ -26,8 +26,9 @@ function newConnection(socket){
     updateData();
     socket.on('message', getMessage);
 
-    function updateData(){
+    function updateData(){        
         let newData = serverData.getServerData();
+        console.log(newData);
         newData.counter ++;
         serverData.setServerData(newData);
         //socket.broadcast.emit('counter', JSON.stringify(serverData.getServerData()));

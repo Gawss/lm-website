@@ -13,9 +13,9 @@ function setup() {
 
     setUpSocket();
     
-    cube = new Cube((w/4)*1,(h/4)*3,30);
-    cube2 = new Cube((w/4)*2,(h/4)*3,30);
-    cube3 = new Cube((w/4)*3,(h/4)*3,30);
+    cube = new Cube("A b o u t  m e",(w/4)*1,(h/4)*3,30);
+    cube2 = new Cube("P r o j e c t s",(w/4)*2,(h/4)*3,30);
+    cube3 = new Cube("T o o l s",(w/4)*3,(h/4)*3,30);
 
     counterTxt = new CustomText(0, 200,200);
     cube.setUp();

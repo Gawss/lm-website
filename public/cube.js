@@ -1,5 +1,6 @@
 class Cube {
-    constructor(positionX, positionY, size) {
+    constructor(title, positionX, positionY, size) {
+        this.title = title;
         this.positionX = positionX;
         this.positionY = positionY;
         this.size = size;
@@ -55,6 +56,10 @@ class Cube {
         this.canvas_.pop();
         imageMode(CENTER);
         this.drawProgressBar(hipothenuse, this.positionX, this.positionY);
+        // textFont('Source Code Pro');
+        textAlign(CENTER);
+        textSize(this.size/2);
+        text(this.title, this.positionX, this.positionY+((this.size*2.2)));
         image(this.canvas_, this.positionX,this.positionY);
     }
 

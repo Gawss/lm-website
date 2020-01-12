@@ -19,12 +19,12 @@ app.get('/', (req, res) => {
 let io = socket(server);
 
 io.sockets.on('connection', newConnection);
-io.sockets.on('message', getMessage);
 
 function newConnection(socket){
     console.log(socket.id);
+    socket.on('message', getMessage);
 }
 
-function getMessage(data){
-    console.log(data);
+function getMessage(msg){
+    console.log(msg);
 }

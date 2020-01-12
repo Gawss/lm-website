@@ -45,5 +45,5 @@ function drawLines(){
 }
 
 function mousePressed(){
-    socket.emit('chat message', "123");
+    socket.emit('message', "123");
 }

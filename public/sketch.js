@@ -45,5 +45,6 @@ function drawLines(){
 }
 
 function mousePressed(){
+    console.log("sending message...");
     socket.emit('message', "123");
 }

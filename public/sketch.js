@@ -17,7 +17,7 @@ function setup() {
     setUpSocket();
 
     for(let i=0; i<numCubes;i++){
-        cubes.push(new Cube(cubeTitles[i],(w/4)*(i+1),(h/4)*3,30, cubeColors[i]));
+        cubes.push(new Cube(cubeTitles[i],(w/4)*(i+1),(h/4)*3,(w/45), cubeColors[i]));
         cubes[i].setUp();
     }
 

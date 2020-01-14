@@ -21,9 +21,10 @@ class Cube {
         this.canvas_.background(255,255,255,0);
     }
 
-    setPosition(x, y){
+    setStatus(x, y, size_){
         this.positionX = x;
         this.positionY = y;
+        this.size = size_;
     }
 
     draw(){

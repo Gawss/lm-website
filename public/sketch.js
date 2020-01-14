@@ -6,6 +6,7 @@ let cubes = [];
 let numCubes = 3;
 const cubeTitles = ["A b o u t  m e", "P r o j e c t s", "T o o l s"];
 let cubeColors = [];
+let cubeSize = 20/(h/w);
 
 let timeLine;
 let counterTxt;
@@ -15,9 +16,9 @@ function setup() {
     canvas.style('display', 'block');
     cubeColors = [color(75,255,100), color(0,200,255), color(240,60,50)];
     setUpSocket();
-
+    cubeSize = (cubeSize<25)?25:cubeSize;
     for(let i=0; i<numCubes;i++){
-        cubes.push(new Cube(cubeTitles[i],(w/4)*(i+1),(h/4)*3,(w/45), cubeColors[i]));
+        cubes.push(new Cube(cubeTitles[i],(w/4)*(i+1),(h/4)*3,cubeSize, cubeColors[i]));
         cubes[i].setUp();
     }
 
@@ -43,9 +44,10 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     w = window.innerWidth;
     h = window.innerHeight;
-
+    cubeSize = 20/(h/w);
+    cubeSize = (cubeSize<25)?25:cubeSize;
     for(let i=0; i<numCubes;i++){
-        cubes[i].setPosition((w/4)*(i+1),(h/4)*3);
+        cubes[i].setStatus((w/4)*(i+1),(h/4)*3, cubeSize);
     }
 }
 
@@ -61,6 +63,7 @@ function mousePressed(){
     // console.log("sending message...");
     // socket.emit('message', "123");
     timeLine.rotateLeft();
+    
     for(let i=0; i<numCubes;i++){
         if(cubes[i].clickAvailable){
            cubes[i].onMousePressed(pressed(cubes[i].title));

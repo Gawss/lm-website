@@ -1,5 +1,5 @@
 class Cube {
-    constructor(title, positionX, positionY, size) {
+    constructor(title, positionX, positionY, size, color_) {
         this.title = title;
         this.positionX = positionX;
         this.positionY = positionY;
@@ -10,11 +10,15 @@ class Cube {
         this.speed = 3;
         this.startValue = 270;
         this.progessBar_Value = this.startValue;
+        this.clickAvailable = false;
+        this.isActive = false;
+        this.color_ = color_;
+        this.dColor = color(200,200,200,220);
     }
 
     setUp(){
         this.canvas_ = createGraphics(this.size*2.5, this.size*2.5, WEBGL);
-        this.canvas_.background(255,255,255,100);
+        this.canvas_.background(255,255,255,0);
     }
 
     setPosition(x, y){
@@ -23,17 +27,12 @@ class Cube {
     }
 
     draw(){
-        let maxDistance = this.GetMagnitude(w/2,h/2);
-    
-        let directionX = ((this.positionX - mouseX)>0)? -1:1;
-        let directionY = ((this.positionY - mouseY)>0)? -1:1;
-        let catetoX = abs(this.positionX - mouseX);
-        let catetoY = abs(this.positionY - mouseY);
-        let hipothenuse = this.GetMagnitude(catetoX,catetoY);
+        
+        this.distance = GetDistance(this.positionX, this.positionY, mouseX, mouseY);
+        let maxDistance = GetMagnitude(w/2,h/2);
+        let distanceInvert = maxDistance - this.distance;
 
-        this.canvas_.line(this.positionX,this.positionY,this.positionX+(directionX*catetoX),this.positionY+(directionY*catetoY));
-        this.distance = maxDistance - hipothenuse;
-        let speed = Math.pow(this.distance*0.0006,2);
+        let speed = Math.pow(distanceInvert*0.006,2);
             
         if(this.angle >= 360){
             this.angle = 0;
@@ -41,56 +40,57 @@ class Cube {
             this.angle += speed;
         }
     
-        let rotation = this.angle;
+        let rotation = radians(this.angle);
         this.canvas_.background(0,0,0,0);
         this.canvas_.push();
         this.canvas_.rotateX(rotation);
         this.canvas_.rotateY(rotation);
         this.canvas_.fill(100,100,100,5);
         this.canvas_.noStroke();
-        this.canvas_.stroke(200,200,200,5);
+        this.canvas_.stroke((this.isActive)?this.color_:this.dColor);
         this.canvas_.box(this.size,this.size,this.size);
-        this.canvas_.stroke(200,200,200,50);
+        this.canvas_.stroke((this.isActive)?this.color_:this.dColor);
         this.canvas_.ellipseMode(CENTER);
         this.canvas_.ellipse(0,0,this.size*2);
         this.canvas_.pop();
-        imageMode(CENTER);
-        this.drawProgressBar(hipothenuse, this.positionX, this.positionY);
-        // textFont('Source Code Pro');
+        push();
+        this.onMouseEnter();
         textAlign(CENTER);
         textSize(this.size/2);
         text(this.title, this.positionX, this.positionY+((this.size*2.2)));
+        imageMode(CENTER);
         image(this.canvas_, this.positionX,this.positionY);
+        pop();
     }
 
-    drawProgressBar(distance, positionX, positionY){
-        if(distance < 70){
-            if(this.progessBar_Value < this.startValue+360){
-                this.progessBar_Value += this.speed;
-            }else{
-                this.progessBar_Value = this.startValue;
-            }
-            push();
-            noFill();
-            stroke(0,200,255);
-            strokeWeight(2.5);
-            arc(positionX, positionY, this.size*3, this.size*3, radians(this.startValue), radians(this.progessBar_Value));
-            fill(255, 50);
-            noStroke();
-            ellipse(positionX,positionY,this.size*3);
-            pop();
+    drawProgressBar(positionX, positionY){
+        if(this.progessBar_Value < this.startValue+360){
+            this.progessBar_Value += this.speed;
         }else{
             this.progessBar_Value = this.startValue;
         }
+        push();
+        noFill();
+        stroke(this.color_);
+        strokeWeight(2.5);
+        arc(positionX, positionY, this.size*3, this.size*3, radians(this.startValue), radians(this.progessBar_Value));
+        fill(255, 50);
+        noStroke();
+        ellipse(positionX,positionY,this.size*3);
+        pop();
     }
 
-    GetMagnitude(vec1, vec2){
-        let magnitude = Math.sqrt((vec1*vec1) + (vec2*vec2));
-        return magnitude;
+    onMouseEnter(){
+        if(this.distance < (this.size*3)/2){
+            this.clickAvailable = true;
+            this.drawProgressBar(this.positionX, this.positionY);
+        }else{
+            this.progessBar_Value = this.startValue;
+            this.clickAvailable = false;
+        }
     }
-    
-    GetCateto(hypotenuse, cateto1){
-        let cateto2 = Math.sqrt((hypotenuse*hypotenuse)-(cateto1*cateto1));
-        return cateto2;
+
+    onMousePressed(){
+        this.isActive = !this.isActive;
     }
 }

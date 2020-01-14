@@ -2,25 +2,28 @@ var w = window.innerWidth;
 var h = window.innerHeight;
 let canvas;
 
-let cube;
-let cube2;
-let cube3;
+let cubes = [];
+let numCubes = 3;
+const cubeTitles = ["A b o u t  m e", "P r o j e c t s", "T o o l s"];
+let cubeColors = [];
+
+let timeLine;
 let counterTxt;
 
 function setup() {
     canvas = createCanvas(w, h);
     canvas.style('display', 'block');
-
+    cubeColors = [color(75,255,100), color(0,200,255), color(240,60,50)];
     setUpSocket();
-    
-    cube = new Cube("A b o u t  m e",(w/4)*1,(h/4)*3,30);
-    cube2 = new Cube("P r o j e c t s",(w/4)*2,(h/4)*3,30);
-    cube3 = new Cube("T o o l s",(w/4)*3,(h/4)*3,30);
 
+    for(let i=0; i<numCubes;i++){
+        cubes.push(new Cube(cubeTitles[i],(w/4)*(i+1),(h/4)*3,30, cubeColors[i]));
+        cubes[i].setUp();
+    }
+
+    timeLine = new Timeline(w/2, h/2, 200, 10);
     counterTxt = new CustomText(0, 200,200);
-    cube.setUp();
-    cube2.setUp();
-    cube3.setUp();
+    timeLine.setUp();
 }
 
 function draw() {
@@ -28,18 +31,22 @@ function draw() {
     fill(255);
     text("Working!",100,100);
     counterTxt.drawText();
-    cube.draw();
-    cube2.draw();
-    cube3.draw();
+
+    for(let i=0; i<numCubes;i++){
+        cubes[i].draw();
+    }
+
+    timeLine.draw();
 }
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     w = window.innerWidth;
     h = window.innerHeight;
-    cube.setPosition((w/4)*1,(h/4)*3);
-    cube2.setPosition((w/4)*2,(h/4)*3);
-    cube3.setPosition((w/4)*3,(h/4)*3);
+
+    for(let i=0; i<numCubes;i++){
+        cubes[i].setPosition((w/4)*(i+1),(h/4)*3);
+    }
 }
 
 function drawLines(){
@@ -51,6 +58,16 @@ function drawLines(){
 }
 
 function mousePressed(){
-    console.log("sending message...");
-    socket.emit('message', "123");
+    // console.log("sending message...");
+    // socket.emit('message', "123");
+    timeLine.rotateLeft();
+    for(let i=0; i<numCubes;i++){
+        if(cubes[i].clickAvailable){
+           cubes[i].onMousePressed(pressed(cubes[i].title));
+        }
+    }
+}
+
+function pressed(x){
+    console.log(x)
 }

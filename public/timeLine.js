@@ -10,6 +10,11 @@ class Timeline {
         this.isActive = false;
         this.color_ = color_;
         this.dColor = color(200,200,200,150);
+
+        this.newAngle = 0;
+        this.isMoving = false;
+        this.force = 0;
+        this.direction = 1;
     }
 
     setUp(){
@@ -19,6 +24,7 @@ class Timeline {
     }
 
     draw(){
+        this.canvasTl.orbitControl();
         this.canvasTl.background(0,0,0,0);
         this.canvasTl.push();
         this.canvasTl.stroke((this.isActive)?this.color_:this.dColor);
@@ -31,6 +37,7 @@ class Timeline {
         this.canvasTl.noStroke();
         this.canvasTl.pop();
         // this.rotateLeft();
+        if(this.isMoving)this.move();
         imageMode(CENTER);
         image(this.canvasTl, this.posX, this.posY);
     }
@@ -40,8 +47,21 @@ class Timeline {
         this.posY = y;
     }
 
-    rotate(value){
-        this.canvasTl.rotateZ(radians(value));
+    rotate(value, direction){
+        this.newAngle = this.newAngle + value;
+        this.isMoving = true;
+        this.force = 10;
+        this.direction = direction;
+    }
+
+    move(){
+        if(this.force > 0){
+            this.canvasTl.rotateZ(radians(this.direction*this.force));
+            this.angle++;
+            this.force -= 0.1;
+        }else{
+            this.isMoving = false;
+        }
     }
 
     polygon(x, y, radius, npoints) {

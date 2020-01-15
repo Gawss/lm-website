@@ -52,6 +52,7 @@ function setup() {
 }
 
 function draw() {
+        
     background(0,3,10);
     fill(255);
     text("Working!",100,100);
@@ -91,9 +92,9 @@ function mousePressed(){
     // console.log("sending message...");
     // socket.emit('message', "123");
     
-    for(let i=0; i<numLevels;i++){
-        levels[i].rotate(5);
-    }
+    // for(let i=0; i<numLevels;i++){
+    //     levels[i].rotate(5);
+    // }
     for(let i=0; i<numCubes;i++){
         if(cubes[i].clickAvailable){
            cubes[i].onMousePressed(pressed(cubes[i].title));
@@ -112,7 +113,7 @@ function swiped(event) {
     if (event.direction == 4) {
         msg = "you swiped right";
         for(let i=0; i<numLevels;i++){
-            levels[i].rotate(-20);
+            levels[i].rotate(20, -1);
         }
     } else if (event.direction == 8) {
         msg = "you swiped up";
@@ -121,7 +122,7 @@ function swiped(event) {
     } else if (event.direction == 2) {
         msg = "you swiped left";
         for(let i=0; i<numLevels;i++){
-            levels[i].rotate(20);
+            levels[i].rotate(20, 1);
         }
     }
     console.log(msg);

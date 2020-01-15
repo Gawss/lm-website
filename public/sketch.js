@@ -117,6 +117,7 @@ function swiped(event) {
         }
     } else if (event.direction == 8) {
         msg = "you swiped up";
+        location.reload();
     } else if (event.direction == 16) {
         msg = "you swiped down";
     } else if (event.direction == 2) {

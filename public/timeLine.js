@@ -79,8 +79,27 @@ class Timeline {
             let sy = y + sin(a) * radius;
             this.canvasTl.push();
             this.canvasTl.translate(sx,sy,0);
-            this.canvasTl.sphere(this.size/25);
+            var event = new Event(this.size/25, this.canvasTl);
+            this.canvasTl = event.draw();
+            //this.canvasTl.sphere(this.size/25);
             this.canvasTl.pop();
         }
       }
+}
+
+class Event{
+    constructor(size,canvas){
+        this.size = size;
+        this.canvas = canvas;
+    }
+
+    draw(){
+        this.canvas.sphere(this.size);
+        this.canvas.stroke(255);
+        this.canvas.line(0,0,0,0,0,this.size*2);
+        this.canvas.rotateX(radians(90));
+        this.canvas.fill(200);
+        this.canvas.rect(10,15,20,20);
+        return this.canvas;
+    }
 }

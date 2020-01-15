@@ -40,8 +40,8 @@ class Timeline {
         this.posY = y;
     }
 
-    rotateLeft(){
-        this.canvasTl.rotateZ(radians(5));
+    rotate(value){
+        this.canvasTl.rotateZ(radians(value));
     }
 
     polygon(x, y, radius, npoints) {

@@ -17,6 +17,20 @@ let counterTxt;
 function setup() {
     canvas = createCanvas(w, h);
     canvas.style('display', 'block');
+
+    // set options to prevent default behaviors for swipe, pinch, etc
+    var options = {
+        preventDefault: true
+    };
+
+    // document.body registers gestures anywhere on the page
+    var hammer = new Hammer(document.body, options);
+    hammer.get('swipe').set({
+        direction: Hammer.DIRECTION_ALL
+    });
+
+    hammer.on("swipe", swiped);
+
     cubeColors = [color(75,255,100), color(0,200,255), color(240,60,50)];
     lvlColors = [color(75,255,100, 180), color(0,200,255,180), color(240,60,50,180)];
     setUpSocket();
@@ -78,7 +92,7 @@ function mousePressed(){
     // socket.emit('message', "123");
     
     for(let i=0; i<numLevels;i++){
-        levels[i].rotateLeft();
+        levels[i].rotate(5);
     }
     for(let i=0; i<numCubes;i++){
         if(cubes[i].clickAvailable){
@@ -91,3 +105,24 @@ function mousePressed(){
 function pressed(x){
     console.log(x)
 }
+
+function swiped(event) {
+    let msg;
+    console.log(event.direction);
+    if (event.direction == 4) {
+        msg = "you swiped right";
+        for(let i=0; i<numLevels;i++){
+            levels[i].rotate(-20);
+        }
+    } else if (event.direction == 8) {
+        msg = "you swiped up";
+    } else if (event.direction == 16) {
+        msg = "you swiped down";
+    } else if (event.direction == 2) {
+        msg = "you swiped left";
+        for(let i=0; i<numLevels;i++){
+            levels[i].rotate(20);
+        }
+    }
+    console.log(msg);
+  }

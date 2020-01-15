@@ -1,12 +1,15 @@
 class Timeline {
-    constructor(x, y, size, numEvents) {
+    constructor(x, y, size, numEvents, color_) {
         this.posX = x;
         this.posY = y;
         this.size = size;
         this.canvasTl;
         this.angle = 0;
+        this.events = numEvents;
 
-        this.events = (numEvents>5)?5:numEvents;
+        this.isActive = false;
+        this.color_ = color_;
+        this.dColor = color(200,200,200,150);
     }
 
     setUp(){
@@ -18,22 +21,23 @@ class Timeline {
     draw(){
         this.canvasTl.background(0,0,0,0);
         this.canvasTl.push();
-        this.canvasTl.stroke(255, 200);
+        this.canvasTl.stroke((this.isActive)?this.color_:this.dColor);
         this.canvasTl.noFill();        
         this.canvasTl.rectMode(CENTER);
         //this.canvasTl.rect(0, 0, this.size, this.size);
-        this.polygon(0, 0, this.size/2, this.events);
+        this.polygon(0, 0, (this.size/2)-((this.size/2)/this.events), this.events);
         this.canvasTl.translate(0,0,30);
-        this.canvasTl.stroke(70,200,100, 200);
-        this.polygon(0, 0, this.size/2, this.events);
-        this.canvasTl.fill(0,200,100, 200);
+        this.canvasTl.fill((this.isActive)?this.color_:this.dColor);
         this.canvasTl.noStroke();
-        this.canvasTl.translate(0,0,70);
-        this.canvasTl.sphere(this.size/18);
         this.canvasTl.pop();
         // this.rotateLeft();
         imageMode(CENTER);
         image(this.canvasTl, this.posX, this.posY);
+    }
+
+    setStatus(x,y){
+        this.posX = x;
+        this.posY = y;
     }
 
     rotateLeft(){

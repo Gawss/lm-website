@@ -51,8 +51,8 @@ class Cube {
         this.canvas_.stroke((this.isActive)?this.color_:this.dColor);
         this.canvas_.box(this.size,this.size,this.size);
         this.canvas_.stroke((this.isActive)?this.color_:this.dColor);
-        this.canvas_.ellipseMode(CENTER);
-        this.canvas_.ellipse(0,0,this.size*2);
+        // this.canvas_.ellipseMode(CENTER);
+        // this.canvas_.ellipse(0,0,this.size*2);
         this.canvas_.pop();
         push();
         this.onMouseEnter();

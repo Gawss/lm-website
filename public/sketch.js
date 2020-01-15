@@ -8,13 +8,17 @@ const cubeTitles = ["A b o u t  m e", "P r o j e c t s", "T o o l s"];
 let cubeColors = [];
 let cubeSize = 20/(h/w);
 
-let timeLine;
+let levels = [];
+let numLevels = 3;
+let lvlEvents = [1,4,8];
+let lvlColors = [];
 let counterTxt;
 
 function setup() {
     canvas = createCanvas(w, h);
     canvas.style('display', 'block');
     cubeColors = [color(75,255,100), color(0,200,255), color(240,60,50)];
+    lvlColors = [color(75,255,100, 180), color(0,200,255,180), color(240,60,50,180)];
     setUpSocket();
     cubeSize = (cubeSize<25)?25:cubeSize;
     for(let i=0; i<numCubes;i++){
@@ -22,9 +26,15 @@ function setup() {
         cubes[i].setUp();
     }
 
-    timeLine = new Timeline(w/2, h/2, 200, 10);
+    for(let i=0; i<numLevels;i++){
+        levels.push(new Timeline(w/2, (h/3)+((h/(numLevels*3))*i), 200, lvlEvents[i], lvlColors[i]));
+    }
     counterTxt = new CustomText(0, 200,200);
-    timeLine.setUp();
+
+    for(let i=0; i<numLevels;i++){
+        levels[i].setUp();
+    }
+
 }
 
 function draw() {
@@ -36,8 +46,9 @@ function draw() {
     for(let i=0; i<numCubes;i++){
         cubes[i].draw();
     }
-
-    timeLine.draw();
+    for(let i=0; i<numLevels;i++){
+        levels[i].draw();
+    }
 }
 
 function windowResized() {
@@ -48,6 +59,9 @@ function windowResized() {
     cubeSize = (cubeSize<25)?25:cubeSize;
     for(let i=0; i<numCubes;i++){
         cubes[i].setStatus((w/4)*(i+1),(h/4)*3, cubeSize);
+    }
+    for(let i=0; i<numLevels;i++){
+        levels[i].setStatus(w/2, (h/3)+((h/(numLevels*3))*i));
     }
 }
 
@@ -62,11 +76,14 @@ function drawLines(){
 function mousePressed(){
     // console.log("sending message...");
     // socket.emit('message', "123");
-    timeLine.rotateLeft();
     
+    for(let i=0; i<numLevels;i++){
+        levels[i].rotateLeft();
+    }
     for(let i=0; i<numCubes;i++){
         if(cubes[i].clickAvailable){
            cubes[i].onMousePressed(pressed(cubes[i].title));
+           levels[i].isActive = !levels[i].isActive;
         }
     }
 }

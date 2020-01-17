@@ -20,6 +20,7 @@ class Timeline {
 
         this.level = level;
         this.aboutme;
+        this.tools;
     }
 
     setUp(){
@@ -36,6 +37,11 @@ class Timeline {
             this.aboutme.MiguelGif.mousePressed(() => {
                 this.isActive = !this.isActive;
             });
+        }
+
+        if(this.level == 2){
+            this.tools = new Tools(this.canvasT1, this.numEvents);
+            this.tools.setUp();
         }
     }
 
@@ -114,6 +120,9 @@ class Timeline {
                 this.aboutme.canvas = this.canvasTl;
                 this.canvasT1 = this.aboutme.draw(this.isActive);
             }
+            if(this.level == 2){
+                this.canvasTl = this.tools.draw(this.canvasTl, -this.angle, i, (this.isActive)?this.color_:this.dColor);
+            }
             // this.canvasTl.rectMode(CENTER);
             // this.canvasTl.rect(10,20,20,20);
             this.canvasTl.pop();
@@ -151,8 +160,6 @@ class AboutMe{
     setUp(){
         this.MiguelGif = createImg("./resources/MiguelGif.gif", "Profile Picture",'');
     }
-
-
 
     resize(){
         this.MiguelGif.size(this.sizeX,this.sizeY);
@@ -216,11 +223,30 @@ class AboutMe{
 }
 
 class Tools{
-    constructor(canvas, color){
-        this.canvas = canvas;
+    constructor(canvasTl, numEvents){
+        this.canvas  = canvasTl;
+        this.numImg = numEvents;
+        this.images = [];
     }
 
-    draw(){
+    setUp(){
+        for(let i=0;i<this.numImg;i++){
+            this.images.push(loadImage("./resources/" + i + ".png"));
+        }
+    }
 
+    draw(canvas_,angle, i, color){
+        // canvas_.texture(this.images[i]);
+        canvas_.rotateY(radians(angle));
+        canvas_.rotateX(radians(180));
+        canvas_.rectMode(CENTER);
+        canvas_.fill(255);
+        // canvas_.rect(15,-25,40,40);
+        canvas_.texture(this.images[i]);
+        // canvas_.rect(15,-25,40,40);
+        canvas_.stroke(color);
+        canvas_.box(40,40,40);
+        // canvas_.plane(40);
+        return canvas_;
     }
 }

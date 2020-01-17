@@ -33,6 +33,9 @@ class Timeline {
         if(this.level == 0){
             this.aboutme = new AboutMe(this.canvasT1, this.color_);
             this.aboutme.setUp();
+            this.aboutme.MiguelGif.mousePressed(() => {
+                this.isActive = !this.isActive;
+            });
         }
     }
 
@@ -130,14 +133,28 @@ class AboutMe{
         this.color = color;
         this.x;
         this.y;
+        this.title = {
+            x:0,
+            y:0,
+            width:0,
+            size:16
+        };
+        this.introdTxt = {
+            x:0,
+            y:0,
+            width:0,
+            height: 100,
+            size:12
+        }
     }
 
     setUp(){
         this.MiguelGif = createImg("./resources/MiguelGif.gif", "Profile Picture",'');
     }
 
+
+
     resize(){
-        console.log("CONFIG");
         this.MiguelGif.size(this.sizeX,this.sizeY);
         this.MiguelGif.position(this.x-150,this.y-this.sizeY-20);
     }
@@ -153,11 +170,34 @@ class AboutMe{
             // fill(75,255,100, 40);
             // rect(this.x-155,this.y-this.sizeY-25, this.sizeX+325,this.sizeY+10);
             fill(this.color);
-            textSize(16);
-            text(aboutMeTitle, this.x-20, this.y-this.sizeY-15, this.sizeX+(w/5),this.sizeY);
+            if(isPhone){
+                textAlign(CENTER);
+                this.title.x = 0;
+                this.title.y = this.y-this.sizeY-55;
+                this.title.width = w;
+                this.title.size = 18;
+
+                this.introdTxt.x = this.x-30;
+                this.introdTxt.y = this.y-this.sizeY-20;
+                this.introdTxt.width = (w/2)+20;
+                this.introdTxt.height = this.sizeY;
+            }else{
+                this.title.x = this.x-20;
+                this.title.y = this.y-this.sizeY-15;
+                this.title.width = this.sizeX+(w/5);
+
+                this.introdTxt.x = this.x-20;
+                this.introdTxt.y = this.y-this.sizeY+10;
+                this.introdTxt.width = this.sizeX+(w/5);
+                this.introdTxt.height = this.sizeY;
+            }
+            textSize(this.title.size);
+            text(aboutMeTitle, this.title.x, this.title.y, this.title.width,this.sizeY);
+            textAlign(LEFT);
             fill(255);
-            textSize(12);
-            text(aboutMeTxt, this.x-20, this.y-this.sizeY+10, this.sizeX+150,this.sizeY);
+            textSize(this.introdTxt.size);
+            textLeading(16);
+            text(aboutMeTxt, this.introdTxt.x, this.introdTxt.y, this.introdTxt.width,this.introdTxt.height);
             pop();
             // this.MiguelGif.show();
         }else{
@@ -172,6 +212,7 @@ class AboutMe{
         }
         return this.canvas;
     }
+
 }
 
 class Tools{

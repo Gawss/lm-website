@@ -1,5 +1,6 @@
 var w = window.innerWidth;
 var h = window.innerHeight;
+var isPhone;
 let canvas;
 
 let cubes = [];
@@ -15,6 +16,7 @@ let lvlColors = [];
 let counterTxt;
 
 function setup() {
+    isPhone = (w<600)?true:false;
     canvas = createCanvas(w, h);
     canvas.style('display', 'block');
     // set options to prevent default behaviors for swipe, pinch, etc
@@ -53,7 +55,7 @@ function setup() {
 function draw() {
         
     background(0,3,10);    
-    counterTxt.drawText();
+    // counterTxt.drawText();
 
     for(let i=0; i<numCubes;i++){
         cubes[i].draw();
@@ -70,6 +72,7 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     w = window.innerWidth;
     h = window.innerHeight;
+    isPhone = (w<600)?true:false;
     cubeSize = 20/(h/w);
     cubeSize = (cubeSize<25)?25:cubeSize;
     for(let i=0; i<numCubes;i++){

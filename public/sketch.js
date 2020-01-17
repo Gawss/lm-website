@@ -54,7 +54,7 @@ function setup() {
 
 function draw() {
         
-    background(0,3,10);    
+    background(30,30,30);    
     // counterTxt.drawText();
 
     for(let i=0; i<numCubes;i++){
@@ -63,8 +63,8 @@ function draw() {
     
     for(let i=0; i<numLevels;i++){
         // var angle = angle + levels[i].force;
-        levels[i].update();
-        levels[i].draw();
+        levels[numLevels-1-i].update();
+        levels[numLevels-1-i].draw();
     }
 }
 

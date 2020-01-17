@@ -21,6 +21,7 @@ class Timeline {
         this.level = level;
         this.aboutme;
         this.tools;
+        this.projects;
     }
 
     setUp(){
@@ -37,6 +38,11 @@ class Timeline {
             this.aboutme.MiguelGif.mousePressed(() => {
                 this.isActive = !this.isActive;
             });
+        }
+
+        if(this.level == 1){
+            this.projects = new Projects(this.canvasT1, this.numEvents);
+            this.projects.setUp();
         }
 
         if(this.level == 2){
@@ -84,6 +90,7 @@ class Timeline {
     polygon(x, y, radius, npoints) {
         let angle = TWO_PI / npoints;
         let i = 0;        
+        this.canvasTl.strokeWeight(6);
         this.canvasTl.beginShape();
         for (let a = 0; a < TWO_PI; a += angle) {
             let sx = x + cos(a) * radius;
@@ -119,6 +126,9 @@ class Timeline {
                 this.aboutme.y = this.eventPoints[i].y + this.posY;
                 this.aboutme.canvas = this.canvasTl;
                 this.canvasT1 = this.aboutme.draw(this.isActive);
+            }
+            if(this.level == 1){
+                this.canvasTl = this.projects.draw(this.canvasTl, -this.angle, i, (this.isActive)?this.color_:this.dColor);
             }
             if(this.level == 2){
                 this.canvasTl = this.tools.draw(this.canvasTl, -this.angle, i, (this.isActive)?this.color_:this.dColor);
@@ -231,7 +241,7 @@ class Tools{
 
     setUp(){
         for(let i=0;i<this.numImg;i++){
-            this.images.push(loadImage("./resources/" + i + ".jpg"));
+            this.images.push(loadImage("./resources/tools/" + i + ".jpg"));
         }
     }
 
@@ -244,8 +254,40 @@ class Tools{
         // canvas_.rect(15,-25,40,40);
         canvas_.texture(this.images[i]);
         // canvas_.rect(15,-25,40,40);
-        canvas_.strokeWeight(2);
-        canvas_.stroke(color);
+        canvas_.strokeWeight(1);
+        canvas_.stroke(0);
+        // canvas_.noStroke();
+        canvas_.box(40,40,40);
+        // canvas_.plane(40);
+        return canvas_;
+    }
+}
+
+class Projects{
+    constructor(canvasTl, numEvents){
+        this.canvas  = canvasTl;
+        this.numImg = numEvents;
+        this.images = [];
+    }
+
+    setUp(){
+        for(let i=0;i<this.numImg;i++){
+            this.images.push(loadImage("./resources/projects/" + i + ".jpg"));
+        }
+    }
+
+    draw(canvas_,angle, i, color){
+        // canvas_.texture(this.images[i]);
+        canvas_.rotateY(radians(angle));
+        canvas_.rotateX(radians(180));
+        canvas_.rectMode(CENTER);
+        canvas_.fill(255);
+        // canvas_.rect(15,-25,40,40);
+        canvas_.texture(this.images[i]);
+        // canvas_.rect(15,-25,40,40);
+        canvas_.strokeWeight(1);
+        canvas_.stroke(0);
+        // canvas_.noStroke();
         canvas_.box(40,40,40);
         // canvas_.plane(40);
         return canvas_;

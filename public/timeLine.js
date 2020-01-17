@@ -136,7 +136,7 @@ class AboutMe{
         this.MiguelGif = createImg("./resources/MiguelGif.gif", "Profile Picture",'');
     }
 
-    config(){
+    resize(){
         console.log("CONFIG");
         this.MiguelGif.size(this.sizeX,this.sizeY);
         this.MiguelGif.position(this.x-150,this.y-this.sizeY-20);
@@ -144,7 +144,7 @@ class AboutMe{
 
     draw(isActive){
         if(isActive){
-            this.config();
+            this.resize();
             push();
             noFill();
             stroke(this.color);
@@ -154,15 +154,32 @@ class AboutMe{
             // rect(this.x-155,this.y-this.sizeY-25, this.sizeX+325,this.sizeY+10);
             fill(this.color);
             textSize(16);
-            text(aboutMeTitle, this.x-20, this.y-this.sizeY-15, this.sizeX+150,this.sizeY);
+            text(aboutMeTitle, this.x-20, this.y-this.sizeY-15, this.sizeX+(w/5),this.sizeY);
             fill(255);
             textSize(12);
             text(aboutMeTxt, this.x-20, this.y-this.sizeY+10, this.sizeX+150,this.sizeY);
             pop();
-            this.MiguelGif.show();
+            // this.MiguelGif.show();
         }else{
-            this.MiguelGif.hide();
+            // this.MiguelGif.hide();
+            this.MiguelGif.size(this.sizeX/2,this.sizeY/2);
+            this.MiguelGif.position(this.x-(this.sizeX/4),this.y-(this.sizeY/2)-20);
+            push();
+            noFill();
+            stroke(this.color);
+            rect(this.x-(this.sizeX/4)-5,this.y-(this.sizeY/2)-25, (this.sizeX/2)+10,(this.sizeY/2)+10);
+            pop();
         }
         return this.canvas;
+    }
+}
+
+class Tools{
+    constructor(canvas, color){
+        this.canvas = canvas;
+    }
+
+    draw(){
+
     }
 }

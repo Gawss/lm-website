@@ -231,7 +231,7 @@ class Tools{
 
     setUp(){
         for(let i=0;i<this.numImg;i++){
-            this.images.push(loadImage("./resources/" + i + ".png"));
+            this.images.push(loadImage("./resources/" + i + ".jpg"));
         }
     }
 
@@ -244,6 +244,7 @@ class Tools{
         // canvas_.rect(15,-25,40,40);
         canvas_.texture(this.images[i]);
         // canvas_.rect(15,-25,40,40);
+        canvas_.strokeWeight(2);
         canvas_.stroke(color);
         canvas_.box(40,40,40);
         // canvas_.plane(40);

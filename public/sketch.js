@@ -11,7 +11,7 @@ let cubeSize = 20/(h/w);
 
 let levels = [];
 let numLevels = 3;
-let lvlEvents = [1,4,8];
+let lvlEvents = [1,4,9];
 let lvlColors = [];
 let counterTxt;
 
@@ -122,9 +122,9 @@ function swiped(event) {
         }
     } else if (event.direction == 8) {
         msg = "you swiped up";
-        location.reload();
     } else if (event.direction == 16) {
         msg = "you swiped down";
+        location.reload();
     } else if (event.direction == 2) {
         msg = "you swiped left";
         for(let i=0; i<numLevels;i++){

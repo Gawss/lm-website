@@ -31,7 +31,7 @@ class Timeline {
         }
 
         if(this.level == 0){
-            this.aboutme = new AboutMe(this.canvasT1);
+            this.aboutme = new AboutMe(this.canvasT1, this.color_);
             this.aboutme.setUp();
         }
     }
@@ -58,7 +58,7 @@ class Timeline {
 
     rotate(direction){
         this.isMoving = true;
-        this.force = 3;
+        this.force = 5;
         this.direction = direction;
     }
 
@@ -118,12 +118,16 @@ class Timeline {
     }
 }
 
+const aboutMeTitle = "Luis Miguel Palacio Restrepo";
+const aboutMeTxt = "Interested in the design of digital and physical interfaces, highlighting its impact on the user's emotions; looking to generate meaningful experiences. Furthermore, with knowledge of animation, videogames, mobile applications, Internet of Things and exploration of new technologies.";
+
 class AboutMe{
-    constructor(canvas){
+    constructor(canvas, color){
         this.canvas = canvas;
         this.MiguelGif;
         this.sizeX = 100;
         this.sizeY = 140;
+        this.color = color;
         this.x;
         this.y;
     }
@@ -135,15 +139,26 @@ class AboutMe{
     config(){
         console.log("CONFIG");
         this.MiguelGif.size(this.sizeX,this.sizeY);
-        this.MiguelGif.position(this.x+20,this.y-this.sizeY-20);
+        this.MiguelGif.position(this.x-150,this.y-this.sizeY-20);
     }
 
     draw(isActive){
         if(isActive){
             this.config();
+            push();
             noFill();
-            stroke(255);
-            rect(this.x+15,this.y-this.sizeY-25, this.sizeX+10,this.sizeY+10);
+            stroke(this.color);
+            rect(this.x-155,this.y-this.sizeY-25, this.sizeX+10,this.sizeY+10);
+            noStroke();
+            // fill(75,255,100, 40);
+            // rect(this.x-155,this.y-this.sizeY-25, this.sizeX+325,this.sizeY+10);
+            fill(this.color);
+            textSize(16);
+            text(aboutMeTitle, this.x-20, this.y-this.sizeY-15, this.sizeX+150,this.sizeY);
+            fill(255);
+            textSize(12);
+            text(aboutMeTxt, this.x-20, this.y-this.sizeY+10, this.sizeX+150,this.sizeY);
+            pop();
             this.MiguelGif.show();
         }else{
             this.MiguelGif.hide();

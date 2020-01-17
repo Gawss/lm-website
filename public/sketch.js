@@ -52,9 +52,7 @@ function setup() {
 
 function draw() {
         
-    background(0,3,10);
-    fill(255);
-    text("Working!",100,100);
+    background(0,3,10);    
     counterTxt.drawText();
 
     for(let i=0; i<numCubes;i++){

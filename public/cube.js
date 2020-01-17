@@ -58,6 +58,7 @@ class Cube {
         this.onMouseEnter();
         textAlign(CENTER);
         textSize(this.size/2);
+        fill(255);
         text(this.title, this.positionX, this.positionY+((this.size*2.2)));
         imageMode(CENTER);
         image(this.canvas_, this.positionX,this.positionY);

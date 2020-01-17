@@ -17,7 +17,6 @@ let counterTxt;
 function setup() {
     canvas = createCanvas(w, h);
     canvas.style('display', 'block');
-
     // set options to prevent default behaviors for swipe, pinch, etc
     var options = {
         preventDefault: true
@@ -61,7 +60,10 @@ function draw() {
     for(let i=0; i<numCubes;i++){
         cubes[i].draw();
     }
+    
     for(let i=0; i<numLevels;i++){
+        // var angle = angle + levels[i].force;
+        levels[i].update();
         levels[i].draw();
     }
 }
@@ -105,15 +107,17 @@ function mousePressed(){
 
 function pressed(x){
     console.log(x)
+    for(let i=0; i<numLevels;i++){
+        levels[i].rotate(-1);
+    }
 }
 
 function swiped(event) {
     let msg;
-    console.log(event.direction);
     if (event.direction == 4) {
         msg = "you swiped right";
         for(let i=0; i<numLevels;i++){
-            levels[i].rotate(20, -1);
+            levels[i].rotate(-1);
         }
     } else if (event.direction == 8) {
         msg = "you swiped up";
@@ -123,8 +127,7 @@ function swiped(event) {
     } else if (event.direction == 2) {
         msg = "you swiped left";
         for(let i=0; i<numLevels;i++){
-            levels[i].rotate(20, 1);
+            levels[i].rotate(1);
         }
     }
-    console.log(msg);
   }

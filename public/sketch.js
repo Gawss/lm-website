@@ -40,7 +40,7 @@ function setup() {
     }
 
     for(let i=0; i<numLevels;i++){
-        levels.push(new Timeline(w/2, (h/3)+((h/(numLevels*3))*i), 200, lvlEvents[i], lvlColors[i]));
+        levels.push(new Timeline(w/2, (h/3)+((h/(numLevels*3))*i), 200, lvlEvents[i], lvlColors[i], i));
     }
     counterTxt = new CustomText(0, 200,200);
 

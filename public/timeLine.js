@@ -28,12 +28,13 @@ class Timeline {
         this.canvasTl = createGraphics(this.size*2.5, this.size*2.5, WEBGL);
         this.canvasTl.background(255,255,255,0);
         this.canvasTl.rotateX(radians(75));
+        
         for(let i=0; i<this.numEvents;i++){
             this.eventPoints.push(createVector(0,0,0));
         }
 
         if(this.level == 0){
-            this.aboutme = new AboutMe(this.canvasT1, this.color_);
+            this.aboutme = new AboutMe(this.canvasTl, this.color_);
             this.aboutme.setUp();
             this.aboutme.MiguelGif.mousePressed(() => {
                 this.isActive = !this.isActive;
@@ -41,12 +42,12 @@ class Timeline {
         }
 
         if(this.level == 1){
-            this.projects = new Projects(this.canvasT1, this.numEvents);
+            this.projects = new Projects(this.canvasTl, this.numEvents);
             this.projects.setUp();
         }
 
         if(this.level == 2){
-            this.tools = new Tools(this.canvasT1, this.numEvents);
+            this.tools = new Tools(this.canvasTl, this.numEvents);
             this.tools.setUp();
         }
     }
@@ -56,7 +57,8 @@ class Timeline {
         this.canvasTl.stroke((this.isActive)?this.color_:this.dColor);
         this.canvasTl.noFill();
         this.polygon(0, 0, (this.size/2)-((this.size/2)/this.numEvents), this.numEvents);
-        this.createSpheres();
+        // this.createSpheres();
+        this.createPyramids();
         this.createSign(); 
         this.move();
     }
@@ -66,9 +68,10 @@ class Timeline {
         image(this.canvasTl, this.posX, this.posY);
     }
 
-    setStatus(x,y){
+    setStatus(x,y,size){
         this.posX = x;
         this.posY = y;
+        this.size = size;
     }
 
     rotate(direction){
@@ -90,7 +93,7 @@ class Timeline {
     polygon(x, y, radius, npoints) {
         let angle = TWO_PI / npoints;
         let i = 0;        
-        this.canvasTl.strokeWeight(6);
+        // this.canvasTl.strokeWeight(6);
         this.canvasTl.beginShape();
         for (let a = 0; a < TWO_PI; a += angle) {
             let sx = x + cos(a) * radius;
@@ -109,6 +112,55 @@ class Timeline {
             this.canvasTl.push();
             this.canvasTl.translate(this.eventPoints[i].x, this.eventPoints[i].y, 0);
             this.canvasTl.sphere(sphSize);
+            this.canvasTl.beginShape();
+
+            this.canvasTl.vertex(-100, -100, -100);
+            this.canvasTl.vertex( 100, -100, -100);
+            this.canvasTl.vertex(   0,    0,  100);
+            
+            this.canvasTl.vertex( 100, -100, -100);
+            this.canvasTl.vertex( 100,  100, -100);
+            this.canvasTl.vertex(   0,    0,  100);
+            
+            this.canvasTl.vertex( 100, 100, -100);
+            this.canvasTl.vertex(-100, 100, -100);
+            this.canvasTl.vertex(   0,   0,  100);
+            
+            this.canvasTl.vertex(-100,  100, -100);
+            this.canvasTl.vertex(-100, -100, -100);
+            this.canvasTl.vertex(   0,    0,  100);
+            this.canvasTl.endShape();
+            
+            this.canvasTl.pop();
+        }
+    }
+
+    createPyramids(){
+        for(let i=0;i<this.numEvents;i++){
+            var sphSize = this.size/25;
+
+            this.canvasTl.push();
+            this.canvasTl.fill(this.color_);
+            this.canvasTl.translate(this.eventPoints[i].x, this.eventPoints[i].y, 0);
+            this.canvasTl.beginShape();
+
+            this.canvasTl.vertex(-sphSize, -sphSize, -sphSize);
+            this.canvasTl.vertex( sphSize, -sphSize, -sphSize);
+            this.canvasTl.vertex(   0,    0,  sphSize);
+            
+            this.canvasTl.vertex( sphSize, -sphSize, -sphSize);
+            this.canvasTl.vertex( sphSize,  sphSize, -sphSize);
+            this.canvasTl.vertex(   0,    0,  sphSize);
+            
+            this.canvasTl.vertex( sphSize, sphSize, -sphSize);
+            this.canvasTl.vertex(-sphSize, sphSize, -sphSize);
+            this.canvasTl.vertex(   0,   0,  sphSize);
+            
+            this.canvasTl.vertex(-sphSize,  sphSize, -sphSize);
+            this.canvasTl.vertex(-sphSize, -sphSize, -sphSize);
+            this.canvasTl.vertex(   0,    0,  sphSize);
+            this.canvasTl.endShape();
+            
             this.canvasTl.pop();
         }
     }
@@ -125,10 +177,10 @@ class Timeline {
                 this.aboutme.x = this.eventPoints[i].x + this.posX;
                 this.aboutme.y = this.eventPoints[i].y + this.posY;
                 this.aboutme.canvas = this.canvasTl;
-                this.canvasT1 = this.aboutme.draw(this.isActive);
+                this.canvasTl = this.aboutme.draw(this.isActive, (this.isActive)?this.color_:this.dColor);
             }
             if(this.level == 1){
-                this.canvasTl = this.projects.draw(this.canvasTl, -this.angle, i, (this.isActive)?this.color_:this.dColor);
+                this.canvasTl = this.projects.draw(this.canvasTl, -this.angle, i, (this.isActive)?this.color_:this.dColor, 0, 0);
             }
             if(this.level == 2){
                 this.canvasTl = this.tools.draw(this.canvasTl, -this.angle, i, (this.isActive)?this.color_:this.dColor);
@@ -176,12 +228,12 @@ class AboutMe{
         this.MiguelGif.position(this.x-150,this.y-this.sizeY-20);
     }
 
-    draw(isActive){
+    draw(isActive, color){
         if(isActive){
             this.resize();
             push();
             noFill();
-            stroke(this.color);
+            stroke(color);
             rect(this.x-155,this.y-this.sizeY-25, this.sizeX+10,this.sizeY+10);
             noStroke();
             // fill(75,255,100, 40);
@@ -223,7 +275,7 @@ class AboutMe{
             this.MiguelGif.position(this.x-(this.sizeX/4),this.y-(this.sizeY/2)-20);
             push();
             noFill();
-            stroke(this.color);
+            stroke(color);
             rect(this.x-(this.sizeX/4)-5,this.y-(this.sizeY/2)-25, (this.sizeX/2)+10,(this.sizeY/2)+10);
             pop();
         }
@@ -237,6 +289,7 @@ class Tools{
         this.canvas  = canvasTl;
         this.numImg = numEvents;
         this.images = [];
+        this.size = 30;
     }
 
     setUp(){
@@ -247,18 +300,53 @@ class Tools{
 
     draw(canvas_,angle, i, color){
         // canvas_.texture(this.images[i]);
+        if(w<600){
+            this.size = 35;
+        }else{
+            this.size = 60;
+        }
         canvas_.rotateY(radians(angle));
         canvas_.rotateX(radians(180));
-        canvas_.rectMode(CENTER);
-        canvas_.fill(255);
-        // canvas_.rect(15,-25,40,40);
         canvas_.texture(this.images[i]);
-        // canvas_.rect(15,-25,40,40);
-        canvas_.strokeWeight(1);
-        canvas_.stroke(0);
-        // canvas_.noStroke();
-        canvas_.box(40,40,40);
-        // canvas_.plane(40);
+        canvas_.strokeWeight(2);
+        canvas_.stroke(color);
+        canvas_.box(this.size);        
+
+        canvas_.push();
+        canvas_.noStroke();
+        color.setAlpha(255);
+        canvas_.fill(255);
+        canvas_.rotateY(radians(90));
+        canvas_.translate(0,0,(this.size/2)+1);
+        canvas_.plane(this.size+1);
+        canvas_.pop();
+
+        canvas_.push();
+        canvas_.noStroke();
+        color.setAlpha(255);
+        canvas_.fill(255);
+        canvas_.rotateY(radians(90));
+        canvas_.translate(0,0,-((this.size/2)+1));
+        canvas_.plane(this.size+1);
+        canvas_.pop();
+
+        canvas_.push();
+        canvas_.noStroke();
+        color.setAlpha(255);
+        canvas_.fill(255);
+        canvas_.rotateX(radians(90));
+        canvas_.translate(0,0,-((this.size/2)+1));
+        canvas_.plane(this.size+1);
+        canvas_.pop();
+
+        canvas_.push();
+        canvas_.noStroke();
+        color.setAlpha(255);
+        canvas_.fill(255);
+        canvas_.rotateX(radians(90));
+        canvas_.translate(0,0,(this.size/2)+1);
+        canvas_.plane(this.size+1);
+        canvas_.pop();
         return canvas_;
     }
 }
@@ -268,6 +356,7 @@ class Projects{
         this.canvas  = canvasTl;
         this.numImg = numEvents;
         this.images = [];
+        this.size = 50;
     }
 
     setUp(){
@@ -276,20 +365,63 @@ class Projects{
         }
     }
 
-    draw(canvas_,angle, i, color){
-        // canvas_.texture(this.images[i]);
+    draw(canvas_,angle, i, color, x, y, z){
+
+        if(w<600){
+            this.size = 35;
+        }else{
+            this.size = 60;
+        }
+        canvas_.push();
         canvas_.rotateY(radians(angle));
         canvas_.rotateX(radians(180));
-        canvas_.rectMode(CENTER);
-        canvas_.fill(255);
-        // canvas_.rect(15,-25,40,40);
+        canvas_.translate(x, y, z);
         canvas_.texture(this.images[i]);
-        // canvas_.rect(15,-25,40,40);
-        canvas_.strokeWeight(1);
-        canvas_.stroke(0);
-        // canvas_.noStroke();
-        canvas_.box(40,40,40);
-        // canvas_.plane(40);
+        canvas_.strokeWeight(2);
+        canvas_.stroke(color);
+        canvas_.box(this.size);
+        canvas_.pop();
+
+        canvas_.push();
+        canvas_.rotateY(radians(angle));
+        canvas_.noStroke();
+        color.setAlpha(255);
+        canvas_.fill(255);
+        canvas_.rotateY(radians(90));
+        canvas_.translate(x,y,(this.size/2)+1);
+        canvas_.plane(this.size+1);
+        canvas_.pop();
+
+        canvas_.push();
+        canvas_.rotateY(radians(angle));
+        canvas_.noStroke();
+        color.setAlpha(255);
+        canvas_.fill(255);
+        canvas_.rotateY(radians(90));
+        canvas_.translate(x,y,-((this.size/2)+1));
+        canvas_.plane(this.size+1);
+        canvas_.pop();
+
+        canvas_.push();
+        canvas_.rotateY(radians(angle));
+        canvas_.noStroke();
+        color.setAlpha(255);
+        canvas_.fill(255);
+        canvas_.rotateX(radians(90));
+        canvas_.translate(x,y,-((this.size/2)+1));
+        canvas_.plane(this.size+1);
+        canvas_.pop();
+
+        canvas_.push();
+        canvas_.rotateY(radians(angle));
+        canvas_.noStroke();
+        color.setAlpha(255);
+        canvas_.fill(255);
+        canvas_.rotateX(radians(90));
+        canvas_.translate(x,y,(this.size/2)+1);
+        canvas_.plane(this.size+1);
+        canvas_.pop();
+
         return canvas_;
     }
 }

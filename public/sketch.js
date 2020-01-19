@@ -33,6 +33,7 @@ let counterTxt;
 let mouseCube;
 let cubeCv;
 
+// -------------------------
 let projectsCanvas;
 let toolImgs = [];
 let numTools = 9;
@@ -44,11 +45,16 @@ let numProjects = 4;
 
 let project_active;
 let tools_by_project = [
-    [0,1,2,3],
+    [0,2,7,8],
     [1,2,3,4],
     [4,5,6,7],
-    [0,1]
+    [0,1,8]
 ];
+
+let aboutMeCanvas;
+let aboutCV_SizeX = w/4;
+let aboutCV_SizeY = (h*100)/100;
+let picture;
 
 function setup() {
 
@@ -56,6 +62,7 @@ function setup() {
     canvas = createCanvas(w, h);
     canvas.style('display', 'block');
     projectsCanvas = createGraphics(toolsCV_SizeX + projectsCV_SizeX,h);
+    aboutMeCanvas = createGraphics(aboutCV_SizeX,aboutCV_SizeY);
 
     if(w<600){
         isPhone = true;
@@ -114,32 +121,36 @@ function setup() {
         mouseCube.setUp();
     }
 
-    for(let i=0; i<numProjects; i++){
-        let size_ = 60;
-        let x_ = (toolsCV_SizeX+projectsCV_SizeX)-(projectsCV_SizeX/2);
-        let y_ = (projectsCV_SizeY/numProjects)*(i) + (projectsCV_SizeY/numProjects)/2;
+    if(!isPhone){
+        for(let i=0; i<numProjects; i++){
+            let size_ = 60;
+            let x_ = (toolsCV_SizeX+projectsCV_SizeX)-(projectsCV_SizeX/2);
+            let y_ = (projectsCV_SizeY/numProjects)*(i) + (projectsCV_SizeY/numProjects)/2;
+    
+            projectImgs.push(new imageObj(projectsCanvas, x_, y_, size_, "project"));
+            projectImgs[i].loadImg(i, "projects");
+            projectImgs[i].asignTools(tools_by_project[i]);
+        }
+    
+        for(let i=0; i<numTools; i++){
+            
+            let size_ = 60;
+            let x_ = (toolsCV_SizeX/numTools)*(i) + (toolsCV_SizeX/numTools)/2;
+            let y_ = h-(toolsCV_SizeX/numTools)/2;
+            
+    
+            toolImgs.push(new imageObj(projectsCanvas, x_, y_, size_, "tool"));
+            toolImgs[i].loadImg(i, "tools");
+        }
 
-        projectImgs.push(new imageObj(projectsCanvas, x_, y_, size_, "project"));
-        projectImgs[i].loadImg(i, "projects");
-        projectImgs[i].asignTools(tools_by_project[i]);
+        picture = new About(aboutCV_SizeX/2,((aboutCV_SizeX*60/100)/2) + 50,aboutCV_SizeX*45/100,aboutCV_SizeX*60/100);
+        picture.load();
     }
-
-    for(let i=0; i<numTools; i++){
-        
-        let size_ = 60;
-        let x_ = (toolsCV_SizeX/numTools)*(i) + (toolsCV_SizeX/numTools)/2;
-        let y_ = h-(toolsCV_SizeX/numTools)/2;
-        
-
-        toolImgs.push(new imageObj(projectsCanvas, x_, y_, size_, "tool"));
-        toolImgs[i].loadImg(i, "tools");
-    }
-
 }
 
 function draw() {
         
-    background(30,30,30); 
+    background(30,30,30);
     // counterTxt.drawText();
     if(isPhone){
         for(let i=0; i<numCubes;i++){
@@ -189,6 +200,8 @@ function draw() {
             }
             projectsCanvas = toolImgs[k].draw(projectsCanvas);
         }
+        aboutMeCanvas = picture.draw(aboutMeCanvas);        
+        image(aboutMeCanvas, 0, 0);
         image(projectsCanvas, ((w/4)*1), 0);
     }
 }

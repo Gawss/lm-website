@@ -14,7 +14,6 @@ class imageObj{
         this.img = loadImage("./resources/" + topic + "/" + i + ".jpg");
     }
     draw(canvas_){
-        // this.canvas_.push();
         this.canvas_ = canvas_;
         this.canvas_.imageMode(CENTER);
         this.canvas_.push();
@@ -30,7 +29,7 @@ class imageObj{
         this.canvas_.rect(this.x, this.y, this.size+10, this.size+10);
         this.canvas_.pop();
         this.canvas_.image(this.img, this.x, this.y, this.size, this.size);
-        // this.canvas_.pop();
+        
         return this.canvas_;
     }
 

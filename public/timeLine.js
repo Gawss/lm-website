@@ -192,9 +192,6 @@ class Timeline {
     }
 }
 
-const aboutMeTitle = "Luis Miguel Palacio Restrepo";
-const aboutMeTxt = "Interested in the design of digital and physical interfaces, highlighting its impact on the user's emotions; looking to generate meaningful experiences. Furthermore, with knowledge of animation, videogames, mobile applications, Internet of Things and exploration of new technologies.";
-
 class AboutMe{
     constructor(canvas, color){
         this.canvas = canvas;

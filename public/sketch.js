@@ -33,7 +33,29 @@ let counterTxt;
 let mouseCube;
 let cubeCv;
 
+let projectsCanvas;
+let toolImgs = [];
+let numTools = 9;
+let toolsCV_SizeX = (((w/4)*3)*80)/100;
+let projectsCV_SizeX = (((w/4)*3)*20)/100;
+let projectsCV_SizeY = h-60-(toolsCV_SizeX/numTools)/2;
+let projectImgs = [];
+let numProjects = 4;
+
+let project_active;
+let tools_by_project = [
+    [0,1,2,3],
+    [1,2,3,4],
+    [4,5,6,7],
+    [0,1]
+];
+
 function setup() {
+
+        
+    canvas = createCanvas(w, h);
+    canvas.style('display', 'block');
+    projectsCanvas = createGraphics(toolsCV_SizeX + projectsCV_SizeX,h);
 
     if(w<600){
         isPhone = true;
@@ -51,47 +73,67 @@ function setup() {
                 y:(h/4)*3
             }
         ];
+
+        // set options to prevent default behaviors for swipe, pinch, etc
+        var options = {
+            preventDefault: true
+        };
+
+        // document.body registers gestures anywhere on the page
+        var hammer = new Hammer(document.body, options);
+        hammer.get('swipe').set({
+            direction: Hammer.DIRECTION_ALL
+        });
+
+        hammer.on("swipe", swiped);
+
+        cubeColors = [color(75,255,100), color(0,200,255), color(240,60,50)];
+        lvlColors = [color(75,255,100, 180), color(0,200,255,180), color(240,60,50,180)];
+        setUpSocket();
+        cubeSize = (cubeSize<25)?25:cubeSize;
+        for(let i=0; i<numCubes;i++){        
+            cubes.push(new Cube(cubeTitles[i],cubesLocation[i].x,cubesLocation[i].y,cubeSize, cubeColors[i]));
+            cubes[i].setUp();
+        }
+
+        timeLine_radio = 400;
+        if(w<600){
+            timeLine_radio = 200;
+        }
+        for(let i=0; i<numLevels;i++){
+            levels.push(new Timeline(w/2, (h/3)+((h/(numLevels*3))*(i)), timeLine_radio, lvlEvents[i], lvlColors[i], i));
+        }
+        counterTxt = new CustomText(0, 200,200);
+
+        for(let i=0; i<numLevels;i++){
+            levels[i].setUp();
+        }
+
+        cubeCv = createGraphics(w,h, WEBGL);
+        mouseCube = new Projects(cubeCv, 1);
+        mouseCube.setUp();
     }
-    canvas = createCanvas(w, h);
-    canvas.style('display', 'block');
-    // set options to prevent default behaviors for swipe, pinch, etc
-    var options = {
-        preventDefault: true
-    };
 
-    // document.body registers gestures anywhere on the page
-    var hammer = new Hammer(document.body, options);
-    hammer.get('swipe').set({
-        direction: Hammer.DIRECTION_ALL
-    });
+    for(let i=0; i<numProjects; i++){
+        let size_ = 60;
+        let x_ = (toolsCV_SizeX+projectsCV_SizeX)-(projectsCV_SizeX/2);
+        let y_ = (projectsCV_SizeY/numProjects)*(i) + (projectsCV_SizeY/numProjects)/2;
 
-    hammer.on("swipe", swiped);
-
-    cubeColors = [color(75,255,100), color(0,200,255), color(240,60,50)];
-    lvlColors = [color(75,255,100, 180), color(0,200,255,180), color(240,60,50,180)];
-    setUpSocket();
-    cubeSize = (cubeSize<25)?25:cubeSize;
-    for(let i=0; i<numCubes;i++){        
-        cubes.push(new Cube(cubeTitles[i],cubesLocation[i].x,cubesLocation[i].y,cubeSize, cubeColors[i]));
-        cubes[i].setUp();
+        projectImgs.push(new imageObj(projectsCanvas, x_, y_, size_, "project"));
+        projectImgs[i].loadImg(i, "projects");
+        projectImgs[i].asignTools(tools_by_project[i]);
     }
 
-    timeLine_radio = 400;
-    if(w<600){
-        timeLine_radio = 200;
-    }
-    for(let i=0; i<numLevels;i++){
-        levels.push(new Timeline(w/2, (h/3)+((h/(numLevels*3))*(i)), timeLine_radio, lvlEvents[i], lvlColors[i], i));
-    }
-    counterTxt = new CustomText(0, 200,200);
+    for(let i=0; i<numTools; i++){
+        
+        let size_ = 60;
+        let x_ = (toolsCV_SizeX/numTools)*(i) + (toolsCV_SizeX/numTools)/2;
+        let y_ = h-(toolsCV_SizeX/numTools)/2;
+        
 
-    for(let i=0; i<numLevels;i++){
-        levels[i].setUp();
+        toolImgs.push(new imageObj(projectsCanvas, x_, y_, size_, "tool"));
+        toolImgs[i].loadImg(i, "tools");
     }
-
-    cubeCv = createGraphics(w,h, WEBGL);
-    mouseCube = new Projects(cubeCv, 1);
-    mouseCube.setUp();
 
 }
 
@@ -99,15 +141,55 @@ function draw() {
         
     background(30,30,30); 
     // counterTxt.drawText();
-
-    for(let i=0; i<numCubes;i++){
-        cubes[i].draw();
-    }
-    
-    for(let i=0; i<numLevels;i++){
-        // var angle = angle + levels[i].force;
-        levels[numLevels-1-i].update();
-        levels[numLevels-1-i].draw();
+    if(isPhone){
+        for(let i=0; i<numCubes;i++){
+            cubes[i].draw();
+        }
+        
+        for(let i=0; i<numLevels;i++){
+            levels[numLevels-1-i].update();
+            levels[numLevels-1-i].draw();
+        }
+    }else{
+        let projectActive = null;
+        let distance;
+        projectsCanvas.background(40,40,40,255);
+        // projectsCanvas.fill(100,200,0,50);
+        // projectsCanvas.rect(0, h-60, toolsCV_SizeX, 30);
+        // projectsCanvas.rect(projectsCV_SizeX*4, 0, projectsCV_SizeX, projectsCV_SizeY);
+        for(let i=0; i<numProjects; i++){
+            projectsCanvas = projectImgs[i].draw(projectsCanvas);
+            distance = dist(0, projectImgs[i].y, 0, mouseY);            
+            if(mouseX > ((w/4)*1) & distance < 80){
+                // line(((w-10)/numProjects)*(1+i), h, ((w-10)/numProjects)*(1+i), map(distance, h, 0, h, projectImgs[i].y));
+                projectActive = i;
+            }
+        }
+        for(let k=0; k<numTools; k++){
+            if(projectActive != null){
+                toolImgs[k].isMoving = false;
+                projectImgs[projectActive].tools.forEach(element => {
+                    if(k == element){
+                        toolImgs[k].isMoving = true;
+                        toolImgs[k].move(projectImgs[projectActive].y);
+                    }
+                });
+                for(let l=0; l<numProjects; l++){
+                    if(projectActive != l){
+                        projectImgs[l].tools.forEach(element => {
+                            if(!toolImgs[element].isMoving){
+                                toolImgs[element].isMoving = true;
+                                toolImgs[element].move(h-(toolsCV_SizeX/numTools)/2);
+                            }
+                        });
+                    }
+                }
+            }else{
+                toolImgs[k].move(h-(toolsCV_SizeX/numTools)/2);
+            }
+            projectsCanvas = toolImgs[k].draw(projectsCanvas);
+        }
+        image(projectsCanvas, ((w/4)*1), 0);
     }
 }
 

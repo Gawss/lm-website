@@ -58,68 +58,73 @@ let picture;
 
 function setup() {
 
-        
+    // createCanvas(w, h).style('display', 'block');
     canvas = createCanvas(w, h);
-    canvas.style('display', 'block');
+    // canvas.style('display: block; overflow: hidden;');
+    canvas.parent("interactiveCanvas");
+    canvas.id("canvasP5");
+
     projectsCanvas = createGraphics(toolsCV_SizeX + projectsCV_SizeX,h);
-    aboutMeCanvas = createGraphics(aboutCV_SizeX,aboutCV_SizeY);
+    projectsCanvas.parent("interactiveCanvas");
+    // aboutMeCanvas = createGraphics(aboutCV_SizeX,aboutCV_SizeY);
+    // aboutMeCanvas.parent("informativeCanvas");
 
-    if(w<600){
-        isPhone = true;
-        cubesLocation = [
-            {
-                x:(w/4)*(0+1),
-                y:(h/4)*3
-            },
-            {
-                x:(w/4)*(1+1),
-                y:(h/4)*3
-            },
-            {
-                x:(w/4)*(2+1),
-                y:(h/4)*3
-            }
-        ];
+    // if(w<600){
+    //     isPhone = true;
+    //     cubesLocation = [
+    //         {
+    //             x:(w/4)*(0+1),
+    //             y:(h/4)*3
+    //         },
+    //         {
+    //             x:(w/4)*(1+1),
+    //             y:(h/4)*3
+    //         },
+    //         {
+    //             x:(w/4)*(2+1),
+    //             y:(h/4)*3
+    //         }
+    //     ];
 
-        // set options to prevent default behaviors for swipe, pinch, etc
-        var options = {
-            preventDefault: true
-        };
+    //     // set options to prevent default behaviors for swipe, pinch, etc
+    //     var options = {
+    //         preventDefault: true
+    //     };
 
-        // document.body registers gestures anywhere on the page
-        var hammer = new Hammer(document.body, options);
-        hammer.get('swipe').set({
-            direction: Hammer.DIRECTION_ALL
-        });
+    //     // document.body registers gestures anywhere on the page
+    //     var hammer = new Hammer(document.body, options);
+    //     hammer.get('swipe').set({
+    //         direction: Hammer.DIRECTION_ALL
+    //     });
 
-        hammer.on("swipe", swiped);
+    //     hammer.on("swipe", swiped);
 
-        cubeColors = [color(75,255,100), color(0,200,255), color(240,60,50)];
-        lvlColors = [color(75,255,100, 180), color(0,200,255,180), color(240,60,50,180)];
-        setUpSocket();
-        cubeSize = (cubeSize<25)?25:cubeSize;
-        for(let i=0; i<numCubes;i++){        
-            cubes.push(new Cube(cubeTitles[i],cubesLocation[i].x,cubesLocation[i].y,cubeSize, cubeColors[i]));
-            cubes[i].setUp();
-        }
+    //     cubeColors = [color(75,255,100), color(0,200,255), color(240,60,50)];
+    //     lvlColors = [color(75,255,100, 180), color(0,200,255,180), color(240,60,50,180)];
+    //     setUpSocket();
+    //     cubeSize = (cubeSize<25)?25:cubeSize;
+    //     for(let i=0; i<numCubes;i++){        
+    //         cubes.push(new Cube(cubeTitles[i],cubesLocation[i].x,cubesLocation[i].y,cubeSize, cubeColors[i]));
+    //         cubes[i].setUp();
+    //     }
 
-        timeLine_radio = 400;
-        if(w<600){
-            timeLine_radio = 200;
-        }
-        for(let i=0; i<numLevels;i++){
-            levels.push(new Timeline(w/2, (h/3)+((h/(numLevels*3))*(i)), timeLine_radio, lvlEvents[i], lvlColors[i], i));
-        }
-        counterTxt = new CustomText(0, 200,200);
+    //     timeLine_radio = 400;
+    //     if(w<600){
+    //         timeLine_radio = 200;
+    //     }
+    //     for(let i=0; i<numLevels;i++){
+    //         levels.push(new Timeline(w/2, (h/3)+((h/(numLevels*3))*(i)), timeLine_radio, lvlEvents[i], lvlColors[i], i));
+    //     }
+    //     counterTxt = new CustomText(0, 200,200);
 
-        for(let i=0; i<numLevels;i++){
-            levels[i].setUp();
-        }
+    //     for(let i=0; i<numLevels;i++){
+    //         levels[i].setUp();
+    //     }
 
-        cubeCv = createGraphics(w,h, WEBGL);
-        mouseCube = new Projects(cubeCv, 1);
-        mouseCube.setUp();
-    }
+    //     cubeCv = createGraphics(w,h, WEBGL);
+    //     mouseCube = new Projects(cubeCv, 1);
+    //     mouseCube.setUp();
+    // }
 
     if(!isPhone){
         for(let i=0; i<numProjects; i++){
@@ -153,14 +158,14 @@ function draw() {
     background(30,30,30);
     // counterTxt.drawText();
     if(isPhone){
-        for(let i=0; i<numCubes;i++){
-            cubes[i].draw();
-        }
+        // for(let i=0; i<numCubes;i++){
+        //     cubes[i].draw();
+        // }
         
-        for(let i=0; i<numLevels;i++){
-            levels[numLevels-1-i].update();
-            levels[numLevels-1-i].draw();
-        }
+        // for(let i=0; i<numLevels;i++){
+        //     levels[numLevels-1-i].update();
+        //     levels[numLevels-1-i].draw();
+        // }
     }else{
         let projectActive = null;
         let distance;
@@ -200,9 +205,9 @@ function draw() {
             }
             projectsCanvas = toolImgs[k].draw(projectsCanvas);
         }
-        aboutMeCanvas = picture.draw(aboutMeCanvas);        
-        image(aboutMeCanvas, 0, 0);
-        image(projectsCanvas, ((w/4)*1), 0);
+        // aboutMeCanvas = picture.draw(aboutMeCanvas);        
+        // image(aboutMeCanvas, 0, 0);
+        image(projectsCanvas, ((w/4)*1), 0);        
     }
 }
 

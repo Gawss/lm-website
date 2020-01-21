@@ -8,10 +8,30 @@ class About{
         this.sizeY = sizeY;
         this.x = x;
         this.y = y;
+
+        this.pictureDiv;
+        this.picture;
+        this.textDiv;
+        this.textTitle;
+        this.textInfo;
     }
 
     load(){
         this.MiguelGif = loadImage("./resources/MiguelPicture.PNG");
+        // this.textTitle = createDiv(aboutMeTxt);
+        // this.textTitle.position(10, this.y + 40 + this.sizeY/2);
+
+        this.pictureDiv = createDiv();
+        this.pictureDiv.parent("informativeCanvas");
+        this.pictureDiv.id("infoCV-profilePic");
+        this.pictureDiv.class("profilePic");
+        this.picture = createImg("./resources/MiguelPicture.PNG", "Profile Picture");
+        this.picture.parent("infoCV-profilePic");
+        // this.picture.src = "./resources/MiguelPicture.PNG";
+        
+        this.textInfo = createP(aboutMeTxt);
+        this.textInfo.id("infoCV-textInfo");
+        this.textInfo.parent("informativeCanvas");
     }
 
     draw(canvas_){
@@ -24,13 +44,15 @@ class About{
         canvas_.text(aboutMeTitle, this.x, this.y + 16 + 15 + this.sizeY/2);
         canvas_.pop();
 
-        canvas_.push();
-        canvas_.textAlign(LEFT);
-        canvas_.fill(255);
-        canvas_.textSize(14);
-        canvas_.textLeading(16);
-        canvas_.text(aboutMeTxt, 10, this.y + 40 + this.sizeY/2, aboutCV_SizeX-20);
-        canvas_.push();
+        // canvas_.push();
+        // canvas_.textAlign(LEFT);
+        // canvas_.fill(255);
+        // canvas_.textSize(14);
+        // canvas_.textLeading(16);
+        // canvas_.text(aboutMeTxt, 10, this.y + 40 + this.sizeY/2, aboutCV_SizeX-20);
+        // let text_ = text(aboutMeTxt, 10, this.y + 40 + this.sizeY/2, aboutCV_SizeX-20);
+        // text_.style('text-align: justify;');        
+        // this.textTitle.style('text-align: justify; width:' + 320 + 'px;');
 
         canvas_.imageMode(CENTER);
         canvas_.image(this.MiguelGif, this.x, this.y, this.sizeX, this.sizeY);

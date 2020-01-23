@@ -85,7 +85,10 @@ function setup() {
         var hammer = new Hammer(document.body, options);
         hammer.get('swipe').set({
             direction: Hammer.DIRECTION_ALL
-        });       
+        });
+
+        hammer.on("swipe", swiped);
+        console.log(isPhone);  
     }
 
     // if(w<600){
@@ -328,9 +331,9 @@ function swiped(event) {
     let msg;
     if (event.direction == 4) {
         msg = "you swiped right";
-        for(let i=0; i<numLevels;i++){
-            levels[i].rotate(-1);
-        }
+        // for(let i=0; i<numLevels;i++){
+        //     levels[i].rotate(-1);
+        // }
     } else if (event.direction == 8) {
         msg = "you swiped up";
         scrollVal += 20*(125/125);
@@ -340,8 +343,9 @@ function swiped(event) {
         scrollVal += 20*(-125/125);
     } else if (event.direction == 2) {
         msg = "you swiped left";
-        for(let i=0; i<numLevels;i++){
-            levels[i].rotate(1);
-        }
+        // for(let i=0; i<numLevels;i++){
+        //     levels[i].rotate(1);
+        // }
     }
+    console.log(msg);
   }

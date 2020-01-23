@@ -56,6 +56,8 @@ let aboutCV_SizeX = w/4;
 let aboutCV_SizeY = (h*100)/100;
 let picture;
 
+let scrollVal = 0;
+
 function setup() {
 
     // createCanvas(w, h).style('display', 'block');
@@ -68,6 +70,23 @@ function setup() {
     projectsCanvas.parent("interactiveCanvas");
     // aboutMeCanvas = createGraphics(aboutCV_SizeX,aboutCV_SizeY);
     // aboutMeCanvas.parent("informativeCanvas");
+
+    if(w<600){
+        isPhone = true;
+        angleMode(DEGREES);
+        rectMode(CENTER);
+
+        // set options to prevent default behaviors for swipe, pinch, etc
+        var options = {
+            preventDefault: true
+        };
+
+        // document.body registers gestures anywhere on the page
+        var hammer = new Hammer(document.body, options);
+        hammer.get('swipe').set({
+            direction: Hammer.DIRECTION_ALL
+        });       
+    }
 
     // if(w<600){
     //     isPhone = true;
@@ -166,6 +185,21 @@ function draw() {
         //     levels[numLevels-1-i].update();
         //     levels[numLevels-1-i].draw();
         // }
+
+        if(scrollVal > 360){
+        scrollVal = 0;
+        }
+        if(scrollVal < -360){
+        scrollVal = 0;
+        }
+        ellipseMode(CENTER);
+        translate(width/2, height/2);
+        rotate(map(scrollVal, 0, 360, 0, 1)*360);
+        noFill();
+        stroke(255);
+        ellipse(0,0,map(scrollVal, 0, 360, 0, 1)*50);
+        rect(0, 0, 25, 25);
+
     }else{
         let projectActive = null;
         let distance;
@@ -299,9 +333,11 @@ function swiped(event) {
         }
     } else if (event.direction == 8) {
         msg = "you swiped up";
+        scrollVal += 20*(125/125);
     } else if (event.direction == 16) {
         msg = "you swiped down";
-        location.reload();
+        // location.reload();
+        scrollVal += 20*(-125/125);
     } else if (event.direction == 2) {
         msg = "you swiped left";
         for(let i=0; i<numLevels;i++){

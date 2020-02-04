@@ -1,6 +1,4 @@
 const express = require('express');
-const socket = require('socket.io');
-var serverData = require('./data');
 
 const app = express();
 
@@ -18,25 +16,3 @@ app.get('/', (req, res) => {
     console.log('GET /');
     res.sendFile(__dirname + '/public/main.html');
 });
-
-let io = socket(server);
-io.sockets.on('connection', newConnection);
-
-function newConnection(socket){
-    console.log("New Connection: " + socket.id);
-    updateData();
-    socket.on('message', getMessage);
-
-    function updateData(){        
-        let newData = serverData.getServerData();
-        console.log(newData);
-        newData.counter ++;
-        serverData.setServerData(newData);
-        //socket.broadcast.emit('counter', JSON.stringify(serverData.getServerData()));
-        io.sockets.emit('counter', JSON.stringify(serverData.getServerData()));
-    }
-
-    function getMessage(msg){
-        console.log(msg);
-    }
-}

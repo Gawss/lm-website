@@ -1,80 +1,116 @@
 var w = window.innerWidth;
 var h = window.innerHeight;
-var isPhone = false;
+
+let segoeUI_Font;
+let isPhone = false;
 let canvas;
 
-let cubes = [];
-let numCubes = 3;
-const cubeTitles = ["A b o u t  m e", "P r o j e c t s", "T o o l s"];
-let cubeSize = 20/(h/w);
-let cubesLocation = [
-    {
-        x:cubeSize+50,
-        y:cubeSize+70
-    },
-    {
-        x:cubeSize+50,
-        y:(cubeSize+70)*3
-    },
-    {
-        x:cubeSize+50,
-        y:(cubeSize+70)*5
-    }
-];
-let cubeColors = [];
+let global_state = 0;
+let scrollVal = 0;
 
-let levels = [];
-let numLevels = 3;
-let lvlEvents = [1,3,9];
-let lvlColors = [];
-let timeLine_radio;
-let counterTxt;
+let txtPosX_1 = w/2;
+let txtPosY_1 = h/2;
+let txtPosX_2 = w*18/100;
+let txtPosY_2 = h*10/100;
 
-let mouseCube;
-let cubeCv;
+let mainLinePosX_01 = w/2-135;
+let mainLinePosY_01 = h/2+5;
+let mainLinePosX_02 = w*2/100;
+let mainLinePosY_02 = h*10/100;
 
-// -------------------------
-let projectsCanvas;
-let toolImgs = [];
-let numTools = 9;
-let toolsCV_SizeX = (((w/4)*3)*80)/100;
-let projectsCV_SizeX = (((w/4)*3)*20)/100;
-let projectsCV_SizeY = h-60-(toolsCV_SizeX/numTools)/2;
+let mainLinePosX_11 = w/2+400;
+let mainLinePosY_11 = h/2+5;
+let mainLinePosX_12 = w*2/100;
+let mainLinePosY_12 = h - h*2/100;
+
+let scrollTriangPosX_1 = w*30/100;
+let scrollTriangPosY_1 = h*80/100;
+let scrollTriangPosX_2 = w*2/100;
+let scrollTriangPosY_2 = h*15/100;
+let scrollTriangSize_1 = 100;
+let scrollTriangSize_2 = 18;
+let scrollTriangRotation_1 = 110;
+let scrollTriangRotation_2 = 180;
+
+let rectPicturePosX_0 = w*20/100;
+let rectPicturePosY_0 = h*20/100;
+let rectPicturePosX_1 = w*5/100;
+let rectPicturePosY_1 = h*12/100;
+let rectPicutureWidth_0 = 50;
+let rectPicutureWidth_1 = 180;
+let rectPicutureHeight_0 = 50;
+let rectPicutureHeight_1 = 250;
+let profilePicture;
+
+let amount = 0;
+let step = 1;
+
+let sizeTriangle_Index = 30;
+let locationTriangle_Index;
+let locationTriangleIndexX_0 = w*80/100;
+let locationTriangleIndexY_0 = h*20/100;
+let locationTriangleIndexX_1 = w*70/100;
+let locationTriangleIndexY_1 = h*37/100;
+let rotationTriangleIndex_0 = 200;
+let rotationTriangleIndex_1 = 180;
+
+let sizeTriangle_Scroll;
+let locationTriangle_Scroll;
+
+let profileTitle;
+let profileTxt;
+let profileYear;
+
+let projectTxt;
 let projectImgs = [];
 let numProjects = 4;
 
-let project_active;
-let tools_by_project = [
-    [0,2,7,8],
-    [1,2,3,4],
-    [4,5,6,7],
-    [0,1,8]
-];
+let ellipsePosX;
+let ellipsePosY;
+let ellipseSize;
+let ellipsePosX_0 = (w*75)/100;
+let ellipsePosY_0 = (h*70)/100;
+let ellipsePosX_1 = (w*70)/100;
+let ellipsePosY_1 = (h*65)/100;
+let ellipseSize_0 = 40;
+let ellipseSize_1 = 300;
 
-let aboutMeCanvas;
-let aboutCV_SizeX = w/4;
-let aboutCV_SizeY = (h*100)/100;
-let picture;
+function preload(){
+    segoeUI_Font = loadFont('./resources/fonts/Segoe UI.ttf');
+    profilePicture = loadImage('./resources/MiguelPicture.PNG');
 
-let scrollVal = 0;
+    for(let i=0; i<numProjects;i++){
+        // projectImgs.push(loadImage('./resources/projects/' + i + '.jpg'));
+        projectImgs.push(new img(0,0,0,loadImage('./resources/projects/' + i + '.jpg'),30+(30*(numProjects-i))));
+    }
+}
 
 function setup() {
 
-    // createCanvas(w, h).style('display', 'block');
+    document.getElementById("profileContent").style.display = "none";
+    profileTitle = createP(profileTitle_);
+    profileTitle.parent("profileContent");
+    profileTitle.class("profileTxt");
+
+    profileTxt = createP(profileTxt_);
+    profileTxt.parent("profileContent");
+    profileTxt.class("profileTxt");
+    
+    profileYear = createP(profileYear_);
+    profileYear.parent("profileContent");
+
+    projectTxt = createP("Project Content - Empty");
+    projectTxt.parent("projectContent");
+    projectTxt.class("projectText");
+
     canvas = createCanvas(w, h);
-    // canvas.style('display: block; overflow: hidden;');
-    canvas.parent("interactiveCanvas");
+    canvas.parent("mainCanvas");
     canvas.id("canvasP5");
 
-    projectsCanvas = createGraphics(toolsCV_SizeX + projectsCV_SizeX,h);
-    projectsCanvas.parent("interactiveCanvas");
-    // aboutMeCanvas = createGraphics(aboutCV_SizeX,aboutCV_SizeY);
-    // aboutMeCanvas.parent("informativeCanvas");
+    angleMode(DEGREES);
 
     if(w<600){
         isPhone = true;
-        angleMode(DEGREES);
-        rectMode(CENTER);
 
         // set options to prevent default behaviors for swipe, pinch, etc
         var options = {
@@ -90,162 +126,163 @@ function setup() {
         hammer.on("swipe", swiped);
         console.log(isPhone);  
     }
-
-    // if(w<600){
-    //     isPhone = true;
-    //     cubesLocation = [
-    //         {
-    //             x:(w/4)*(0+1),
-    //             y:(h/4)*3
-    //         },
-    //         {
-    //             x:(w/4)*(1+1),
-    //             y:(h/4)*3
-    //         },
-    //         {
-    //             x:(w/4)*(2+1),
-    //             y:(h/4)*3
-    //         }
-    //     ];
-
-    //     // set options to prevent default behaviors for swipe, pinch, etc
-    //     var options = {
-    //         preventDefault: true
-    //     };
-
-    //     // document.body registers gestures anywhere on the page
-    //     var hammer = new Hammer(document.body, options);
-    //     hammer.get('swipe').set({
-    //         direction: Hammer.DIRECTION_ALL
-    //     });
-
-    //     hammer.on("swipe", swiped);
-
-    //     cubeColors = [color(75,255,100), color(0,200,255), color(240,60,50)];
-    //     lvlColors = [color(75,255,100, 180), color(0,200,255,180), color(240,60,50,180)];
-    //     setUpSocket();
-    //     cubeSize = (cubeSize<25)?25:cubeSize;
-    //     for(let i=0; i<numCubes;i++){        
-    //         cubes.push(new Cube(cubeTitles[i],cubesLocation[i].x,cubesLocation[i].y,cubeSize, cubeColors[i]));
-    //         cubes[i].setUp();
-    //     }
-
-    //     timeLine_radio = 400;
-    //     if(w<600){
-    //         timeLine_radio = 200;
-    //     }
-    //     for(let i=0; i<numLevels;i++){
-    //         levels.push(new Timeline(w/2, (h/3)+((h/(numLevels*3))*(i)), timeLine_radio, lvlEvents[i], lvlColors[i], i));
-    //     }
-    //     counterTxt = new CustomText(0, 200,200);
-
-    //     for(let i=0; i<numLevels;i++){
-    //         levels[i].setUp();
-    //     }
-
-    //     cubeCv = createGraphics(w,h, WEBGL);
-    //     mouseCube = new Projects(cubeCv, 1);
-    //     mouseCube.setUp();
-    // }
-
-    if(!isPhone){
-        for(let i=0; i<numProjects; i++){
-            let size_ = 60;
-            let x_ = (toolsCV_SizeX+projectsCV_SizeX)-(projectsCV_SizeX/2);
-            let y_ = (projectsCV_SizeY/numProjects)*(i) + (projectsCV_SizeY/numProjects)/2;
-    
-            projectImgs.push(new imageObj(projectsCanvas, x_, y_, size_, "project"));
-            projectImgs[i].loadImg(i, "projects");
-            projectImgs[i].asignTools(tools_by_project[i]);
-        }
-    
-        for(let i=0; i<numTools; i++){
-            
-            let size_ = 60;
-            let x_ = (toolsCV_SizeX/numTools)*(i) + (toolsCV_SizeX/numTools)/2;
-            let y_ = h-(toolsCV_SizeX/numTools)/2;
-            
-    
-            toolImgs.push(new imageObj(projectsCanvas, x_, y_, size_, "tool"));
-            toolImgs[i].loadImg(i, "tools");
-        }
-
-        picture = new About(aboutCV_SizeX/2,((aboutCV_SizeX*60/100)/2) + 50,aboutCV_SizeX*45/100,aboutCV_SizeX*60/100);
-        picture.load();
-    }
 }
 
 function draw() {
-        
-    background(30,30,30);
-    // counterTxt.drawText();
-    if(isPhone){
-        // for(let i=0; i<numCubes;i++){
-        //     cubes[i].draw();
-        // }
-        
-        // for(let i=0; i<numLevels;i++){
-        //     levels[numLevels-1-i].update();
-        //     levels[numLevels-1-i].draw();
-        // }
+    isPhone = (w<600)?true:false;
+    background(255);
 
-        if(scrollVal > 360){
-        scrollVal = 0;
+    if(global_state == 0){
+        noStroke();
+        fill(0,135,255,255);
+        textFont(segoeUI_Font);
+        textAlign(CENTER, BOTTOM);
+        textSize(w/50);
+        if(scrollVal<0)scrollVal=0;
+        if(amount>179){scrollVal=60; amount=60;}
+        if(amount < scrollVal){
+            amount += step;
+        }else if(amount > scrollVal){
+            amount -= step;
         }
-        if(scrollVal < -360){
-        scrollVal = 0;
-        }
-        ellipseMode(CENTER);
-        translate(width/2, height/2);
-        rotate(map(scrollVal, 0, 360, 0, 1)*360);
+        var m = map(amount, 0, 20, 0, 1);
+        m = constrain(m, 0,1);
+        let titlePosX = lerp(txtPosX_1, txtPosX_2, m);
+        let titlePosY = lerp(txtPosY_1, txtPosY_2, m);
+        text('LUIS MIGUEL PALACIO RESTREPO', titlePosX, titlePosY);
+        textSize(20);
+        fill(0,135,255,lerp(255/2,0,m));
+        text('Scroll down to begin.', w/2, h*90/100);
+        stroke(0,135,255,255/2);
         noFill();
-        stroke(255);
-        ellipse(0,0,map(scrollVal, 0, 360, 0, 1)*50);
-        rect(0, 0, 25, 25);
+        var m = map(amount, 10, 30, 0, 1);
+        m = constrain(m, 0,1);
 
-    }else{
-        let projectActive = null;
-        let distance;
-        projectsCanvas.background(40,40,40,255);
-        // projectsCanvas.fill(100,200,0,50);
-        // projectsCanvas.rect(0, h-60, toolsCV_SizeX, 30);
-        // projectsCanvas.rect(projectsCV_SizeX*4, 0, projectsCV_SizeX, projectsCV_SizeY);
-        for(let i=0; i<numProjects; i++){
-            projectsCanvas = projectImgs[i].draw(projectsCanvas);
-            distance = dist(0, projectImgs[i].y, 0, mouseY);            
-            if(mouseX > ((w/4)*1) & distance < 80){
-                // line(((w-10)/numProjects)*(1+i), h, ((w-10)/numProjects)*(1+i), map(distance, h, 0, h, projectImgs[i].y));
-                projectActive = i;
-            }
-        }
-        for(let k=0; k<numTools; k++){
-            if(projectActive != null){
-                toolImgs[k].isMoving = false;
-                projectImgs[projectActive].tools.forEach(element => {
-                    if(k == element){
-                        toolImgs[k].isMoving = true;
-                        toolImgs[k].move(projectImgs[projectActive].y);
-                    }
-                });
-                for(let l=0; l<numProjects; l++){
-                    if(projectActive != l){
-                        projectImgs[l].tools.forEach(element => {
-                            if(!toolImgs[element].isMoving){
-                                toolImgs[element].isMoving = true;
-                                toolImgs[element].move(h-(toolsCV_SizeX/numTools)/2);
-                            }
-                        });
-                    }
-                }
-            }else{
-                toolImgs[k].move(h-(toolsCV_SizeX/numTools)/2);
-            }
-            projectsCanvas = toolImgs[k].draw(projectsCanvas);
-        }
-        // aboutMeCanvas = picture.draw(aboutMeCanvas);        
-        // image(aboutMeCanvas, 0, 0);
-        image(projectsCanvas, ((w/4)*1), 0);        
+        let mainLinePosX_0 = lerp(mainLinePosX_01, mainLinePosX_02, m);
+        let mainLinePosY_0 = lerp(mainLinePosY_01, mainLinePosY_02, m);
+        let mainLinePosX_1 = lerp(mainLinePosX_11, mainLinePosX_12, m);
+        let mainLinePosY_1 = lerp(mainLinePosY_11, mainLinePosY_12, m);
+        line(mainLinePosX_0, mainLinePosY_0, mainLinePosX_1, mainLinePosY_1);
+
+        var m = map(amount, 20, 35, 0, 1);
+        m = constrain(m, 0,1);
+        var mScroll = map(amount, 40, 180, 0,1);
+        mScroll = constrain(mScroll, 0, 1);
+        sizeTriangle_Scroll = lerp(scrollTriangSize_1,scrollTriangSize_2, m);
+        let scrollTriang_PosX = lerp(scrollTriangPosX_1, scrollTriangPosX_2, m);
+        let scrollTriang_PosY = lerp(scrollTriangPosY_1, lerp(scrollTriangPosY_2, mainLinePosY_1-15, mScroll), m);
+        locationTriangle_Scroll = createVector(scrollTriang_PosX,scrollTriang_PosY);
+
+        push();
+        fill(255);
+        translate(locationTriangle_Scroll);
+        rotate(lerp(scrollTriangRotation_1, scrollTriangRotation_2,m));
+        triangle(0, 0, -1*sizeTriangle_Scroll, 1.2*sizeTriangle_Scroll, 1*sizeTriangle_Scroll, 1.2*sizeTriangle_Scroll);
+        pop();
+
+        var m = map(amount, 35, 45, 0, 1);
+        m = constrain(m, 0,1);
+        let rectPicturePosX = lerp(rectPicturePosX_0, rectPicturePosX_1, m);
+        let rectPicturePosY = lerp(rectPicturePosY_0, rectPicturePosY_1, m);
+        let rectPictureWidth = lerp(rectPicutureWidth_0, rectPicutureWidth_1, m);
+        let rectPictureHeight = lerp(rectPicutureHeight_0, rectPicutureHeight_1, m);
+        
+        rect(rectPicturePosX, rectPicturePosY, rectPictureWidth, rectPictureHeight);
+        push();
+        tint(255, lerp(0,255,m));
+        image(profilePicture, rectPicturePosX+5, rectPicturePosY+5, rectPictureWidth-10, rectPictureHeight-10);
+        pop();
+
+        var m = map(amount, 40, 50, 0, 1);
+        m = constrain(m, 0,1);
+        if(m>0){document.getElementById("profileContent").style.display = "flex";}
+        else{document.getElementById("profileContent").style.display = "none";}
+        profileTitle.style("color: rgba(50,50,50," + m + ");");
+        profileTxt.style("color: rgba(50,50,50," + m + ");");
+        profileYear.style("color: rgba(50,50,50," + m + ");");
+
+        var m = map(amount, 45, 55, 0, 1);
+        m = constrain(m, 0,1);
+        
+        sizeTriangle_Index = 30;
+        locationTriangleIndex_X = lerp(locationTriangleIndexX_0, locationTriangleIndexX_1, m);
+        locationTriangleIndex_Y = lerp(locationTriangleIndexY_0, locationTriangleIndexY_1, m);
+        locationTriangle_Index = createVector(locationTriangleIndex_X,locationTriangleIndex_Y);
+
+        push();        
+        translate(locationTriangle_Index);
+        rotate(lerp(rotationTriangleIndex_0, rotationTriangleIndex_1, m));
+        triangle(0, 0, -1*sizeTriangle_Index, 1.2*sizeTriangle_Index, 1*sizeTriangle_Index, 1.2*sizeTriangle_Index);
+        pop();
+
+        var m = map(amount, 48, 60, 0, 1);
+        m = constrain(m, 0,1);
+        ellipsePosX = lerp(ellipsePosX_0, ellipsePosX_1, m);
+        ellipsePosY = lerp(ellipsePosY_0, ellipsePosY_1, m);
+        ellipseSize = lerp(ellipseSize_0, ellipseSize_1, m);
+        
+        var m_ = map(amount, 60, 180, 0, 1);
+        m_ = constrain(m_, 0,1);
+        
+        push();
+        translate(ellipsePosX, ellipsePosY);
+        rotate(lerp( 0, 360, m_));
+        ellipse(0, 0, ellipseSize);
+        push();
+        rotate(lerp(0,360,m));
+        tint(255, lerp(0,255,m));
+        fill(255, lerp(0,255,m));
+        stroke(0,135,255,lerp(0,255,m))
+        polygon(0, 0, ellipseSize/2, numProjects, m_, lerp( 0, 360, m_));
+        pop();
+        pop();
+
+        push();
+        noStroke();
+        fill(0,135,255,lerp(0,255,m));
+        text(projectTitles[GetProjectActive(scrollVal)], locationTriangle_Index.x, locationTriangle_Index.y-sizeTriangle_Index-10);
+        projectTxt.style("color: rgba(50,50,50," + m + ");");
+        pop();
+
+        fill(100,100,100,255);
+        text(mouseX + ", " + mouseY, mouseX+5, mouseY-5);
     }
+}
+
+function polygon(x, y, radius, npoints, m_, angle_) {
+
+    imageMode(CENTER);
+    rectMode(CENTER);
+
+    let angle = TWO_PI / npoints;
+    let i = 0;
+    // beginShape();
+    for (let a = 0; a < TWO_PI; a += angle) {
+        angleMode(RADIANS);
+        let sx = x + cos(a) * radius;
+        let sy = y + sin(a) * radius;
+        var xAngle = cos(radians(angle_)+a)*radius;
+        var yAngle = sin(radians(angle_)+a)*radius;
+        angleMode(DEGREES);
+    
+    //   vertex(sx, sy);
+        push();
+        translate(sx, sy);
+        rotate(-360*m_);
+        rect(0, 0, ((radius*2)/npoints)+10, ((radius*2)/npoints)+10);
+        // image(projectImgs[i], 0, 0, (radius*2)/npoints, (radius*2)/npoints);
+        projectImgs[i].draw(ellipsePosX+xAngle, ellipsePosY+yAngle, (radius*2)/npoints, (radius*2)/npoints);
+        pop();
+        i++;
+    }
+    // endShape(CLOSE);
+}
+
+function GetProjectActive(scrollPosition_){
+    for(let i = 0; i<projectImgs.length;i++){
+        if(projectImgs[i].scrollPos == scrollPosition_) {return i+1;}
+    }
+    return 0;
 }
 
 function windowResized() {
@@ -253,99 +290,70 @@ function windowResized() {
     w = window.innerWidth;
     h = window.innerHeight;
     isPhone = (w<600)?true:false;
-    timeLine_radio = (w<600)?200:400;
-    cubeSize = 20/(h/w);
-    cubeSize = (cubeSize<25)?25:cubeSize;
-
-    if(w<600){
-        cubesLocation = [
-            {
-                x:(w/4)*(0+1),
-                y:(h/4)*3
-            },
-            {
-                x:(w/4)*(1+1),
-                y:(h/4)*3
-            },
-            {
-                x:(w/4)*(2+1),
-                y:(h/4)*3
-            }
-        ];
-    }else{
-        cubesLocation = [
-            {
-                x:cubeSize+50,
-                y:cubeSize+70
-            },
-            {
-                x:cubeSize+50,
-                y:(cubeSize+70)*3
-            },
-            {
-                x:cubeSize+50,
-                y:(cubeSize+70)*5
-            }
-        ];
-    }
-    for(let i=0; i<numCubes;i++){
-        cubes[i].setStatus(cubesLocation[i].x,cubesLocation[i].y, cubeSize);
-    }
-    for(let i=0; i<numLevels;i++){
-        levels[i].setStatus(w/2, (h/3)+((h/(numLevels*3))*i), timeLine_radio);
-    }
-}
-
-function drawLines(){
-    for(let i = 0; i < h/20;i++){
-        let mouseDistance = Math.abs(((h/20)*(i+1)-mouseY)/h);
-        line(0, (h/20)*(i+1), mouseX-(6500*mouseDistance), (h/20)*(i+1));
-        line(w, (h/20)*(i+1), mouseX+(6500*mouseDistance), (h/20)*(i+1));
-    }
-}
-
-function mousePressed(){
-    // console.log("sending message...");
-    // socket.emit('message', "123");
-    
-    // for(let i=0; i<numLevels;i++){
-    //     levels[i].rotate(5);
-    // }
-    for(let i=0; i<numCubes;i++){
-        if(cubes[i].clickAvailable){
-           cubes[i].onMousePressed(pressed(cubes[i].title, i));
-           levels[i].isActive = !levels[i].isActive;
-        }
-    }
-}
-
-function pressed(x, i){
-    console.log(x)
-    levels[i].rotate(-1);
-    // for(let i=0; i<numLevels;i++){
-        
-    // }
 }
 
 function swiped(event) {
     let msg;
     if (event.direction == 4) {
         msg = "you swiped right";
-        // for(let i=0; i<numLevels;i++){
-        //     levels[i].rotate(-1);
-        // }
     } else if (event.direction == 8) {
         msg = "you swiped up";
-        scrollVal += 20*(125/125);
+        scrollVal -= 10;
     } else if (event.direction == 16) {
         msg = "you swiped down";
-        // location.reload();
-        scrollVal += 20*(-125/125);
+        scrollVal += 10;
     } else if (event.direction == 2) {
         msg = "you swiped left";
-        // for(let i=0; i<numLevels;i++){
-        //     levels[i].rotate(1);
-        // }
     }
     console.log(msg);
-  }
+}
+
+function mouseWheel(event) {  
+    //move the square according to the vertical scroll amount
+    let force = 10;
+    if(scrollVal>60){
+        force = 5;
+    }
+    if(event.delta > 0){
+        scrollVal += force;
+        if(scrollVal > 61 && scrollVal < 89){
+            scrollVal = 90;
+        }
+        if(scrollVal > 91 && scrollVal < 119){
+            scrollVal = 120;
+        }
+        if(scrollVal > 121 && scrollVal < 149){
+            scrollVal = 150;
+        }
+        if(scrollVal > 151 && scrollVal < 179){
+            scrollVal = 180;
+        }
+    }else{
+        scrollVal -= force;
+        if(scrollVal > 61 && scrollVal < 89){
+            scrollVal = 60;
+        }
+        if(scrollVal > 91 && scrollVal < 119){
+            scrollVal = 90;
+        }
+        if(scrollVal > 121 && scrollVal < 149){
+            scrollVal = 120;
+        }
+        if(scrollVal > 151 && scrollVal < 179){
+            scrollVal = 150;
+        }
+    }
+    projectTxt.html(projectContents[projectTitles[GetProjectActive(scrollVal)]]);
+    //uncomment to block page scrolling
+    // return false;
+}
+
+function mousePressed(){
+    // console.log(amount);
+    for(let i=0;i<projectImgs.length;i++){
+        if(projectImgs[i].isClicked()) {
+            console.log(projectImgs[i].scrollPos);
+            scrollVal = projectImgs[i].scrollPos;
+        }
+    }
+}

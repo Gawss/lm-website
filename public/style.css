@@ -1,56 +1,57 @@
 body {
     display: block;
     margin: 0px;
+    overflow-y: hidden;
 }
 
-.canvasP5{
-    position: fixed;
+p{
+    font-family: "Segoe UI";
+    text-align: justify;
+    position: relative;
+    color: rgba(0,0,0,0);
 }
 
-.informativeCV{
+.profileContent{
     position: absolute;
     display: flex;
     flex-direction: column;
-    height: 1000px;
-    width: 25%;    
+    top: 12%;
+    left: 18%;
+    width: 28%;
+    height: auto;
 }
 
-.informativeCV p{
+.profileContent :first-child{
+    font-size: 20px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+.profileContent :nth-child(2){
+    margin-top: 0px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 0px;
+}
+
+.profileContent :last-child{
+    margin-top: 0px;
+    margin-bottom: 1%;
     margin-left: auto;
-    margin-right: auto;
-    text-align: justify;
-    position: relative; 
-    width: 90%;
-    color: white;
+    margin-right: 5%;
 }
 
-.profilePic{
+.projectContent{
+    position: absolute;
     display: flex;
-    border-style: solid;
-    border-width: 1px;
-    border-color: aqua;    
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    width: 50%;    
+    flex-direction: column;
+    top: 70%;
+    left: 18%;
+    width: 28%;
+    height: auto;
 }
 
-.profilePic :only-child{
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-}
+.projectText{
 
-.imgContainer{
-
-}
-
-.interactiveCV{
-    overflow: hidden;
-    background-color: #333;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
 }

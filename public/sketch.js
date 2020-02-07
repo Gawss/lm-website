@@ -12,6 +12,7 @@ let txtPosX_1 = w/2;
 let txtPosY_1 = h/2;
 let txtPosX_2 = w*18/100;
 let txtPosY_2 = h*10/100;
+let titleSize = w/50;
 
 let mainLinePosX_01 = w/2-135;
 let mainLinePosY_01 = h/2+5;
@@ -39,7 +40,7 @@ let rectPicturePosY_1 = h*12/100;
 let rectPicutureWidth_0 = 50;
 let rectPicutureWidth_1 = 180;
 let rectPicutureHeight_0 = 50;
-let rectPicutureHeight_1 = 250;
+let rectPicutureHeight_1 = 240;
 let profilePicture;
 
 let amount = 0;
@@ -50,9 +51,9 @@ let locationTriangle_Index;
 let locationTriangleIndexX_0 = w*80/100;
 let locationTriangleIndexY_0 = h*20/100;
 let locationTriangleIndexX_1 = w*70/100;
-let locationTriangleIndexY_1 = h*37/100;
+let locationTriangleIndexY_1 = h*53/100;
 let rotationTriangleIndex_0 = 200;
-let rotationTriangleIndex_1 = 180;
+let rotationTriangleIndex_1 = 0;
 
 let sizeTriangle_Scroll;
 let locationTriangle_Scroll;
@@ -70,10 +71,12 @@ let ellipsePosY;
 let ellipseSize;
 let ellipsePosX_0 = (w*75)/100;
 let ellipsePosY_0 = (h*70)/100;
+// let ellipsePosX_1 = (w*70)/100;
+// let ellipsePosY_1 = (h*65)/100;
 let ellipsePosX_1 = (w*70)/100;
-let ellipsePosY_1 = (h*65)/100;
+let ellipsePosY_1 = (h*30)/100;
 let ellipseSize_0 = 40;
-let ellipseSize_1 = 300;
+let ellipseSize_1 = 250;
 
 function preload(){
     segoeUI_Font = loadFont('./resources/fonts/Segoe UI.ttf');
@@ -126,6 +129,8 @@ function setup() {
         hammer.on("swipe", swiped);
         console.log(isPhone);  
     }
+
+    resizeContent();
 }
 
 function draw() {
@@ -137,7 +142,7 @@ function draw() {
         fill(0,135,255,255);
         textFont(segoeUI_Font);
         textAlign(CENTER, BOTTOM);
-        textSize(w/50);
+        textSize(titleSize);
         if(scrollVal<0)scrollVal=0;
         if(amount>179){scrollVal=60; amount=60;}
         if(amount < scrollVal){
@@ -190,7 +195,7 @@ function draw() {
         rect(rectPicturePosX, rectPicturePosY, rectPictureWidth, rectPictureHeight);
         push();
         tint(255, lerp(0,255,m));
-        image(profilePicture, rectPicturePosX+5, rectPicturePosY+5, rectPictureWidth-10, rectPictureHeight-10);
+        image(profilePicture, rectPicturePosX+(w*0.5/100), rectPicturePosY+(w*0.5/100), rectPictureWidth-(w*1/100), rectPictureHeight-(w*1/100));
         pop();
 
         var m = map(amount, 40, 50, 0, 1);
@@ -240,7 +245,7 @@ function draw() {
         push();
         noStroke();
         fill(0,135,255,lerp(0,255,m));
-        text(projectTitles[GetProjectActive(scrollVal)], locationTriangle_Index.x, locationTriangle_Index.y-sizeTriangle_Index-10);
+        text(projectTitles[GetProjectActive(scrollVal)], locationTriangle_Index.x, locationTriangle_Index.y+sizeTriangle_Index*2+10);
         projectTxt.style("color: rgba(50,50,50," + m + ");");
         pop();
 
@@ -308,6 +313,45 @@ function swiped(event) {
     console.log(msg);
 }
 
+function resizeContent(){
+    if(isPhone){
+        rectPicutureWidth_0 = 50;
+        rectPicutureHeight_0 = 50;
+        rectPicutureWidth_1 = 130;
+        rectPicutureHeight_1 = 165;
+        rectPicturePosX_0 = (w*20/100);
+        rectPicturePosY_0 = h*20/100;
+        rectPicturePosX_1 = (w*23/100)-rectPicutureWidth_1/2;
+        rectPicturePosY_1 = h*3/100;
+
+        titleSize = w/18;
+        txtPosX_1 = w/2;
+        txtPosY_1 = h/2;
+        txtPosX_2 = w*47/100;
+        txtPosY_2 = (h*4/100) + rectPicutureHeight_1 + titleSize;
+        document.getElementById("profileContent").style.left = "5%";
+        document.getElementById("profileContent").style.top = "33%";
+        document.getElementById("profileContent").style.width = "80%";
+
+        mainLinePosX_01 = w/2-135;
+        mainLinePosY_01 = h/2+5;
+        mainLinePosX_02 = w;
+        mainLinePosY_02 = h*25/100;
+        
+        mainLinePosX_11 = w/2+400;
+        mainLinePosY_11 = h/2+5;
+        mainLinePosX_12 = 0;
+        mainLinePosY_12 = h*25/100;
+
+        ellipsePosX_0 = (w*75)/100;
+        ellipsePosY_0 = (h*70)/100;
+        ellipsePosX_1 = (w*50)/100;
+        ellipsePosY_1 = (h*70)/100;
+        ellipseSize_0 = 40;
+        ellipseSize_1 = 150;
+    }
+}
+
 function mouseWheel(event) {  
     //move the square according to the vertical scroll amount
     let force = 10;
@@ -354,6 +398,7 @@ function mousePressed(){
         if(projectImgs[i].isClicked()) {
             console.log(projectImgs[i].scrollPos);
             scrollVal = projectImgs[i].scrollPos;
+            projectTxt.html(projectContents[projectTitles[GetProjectActive(scrollVal)]]);
         }
     }
 }

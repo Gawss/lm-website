@@ -16,3 +16,9 @@ app.get('/', (req, res) => {
     console.log('GET /');
     res.sendFile(__dirname + '/public/main.html');
 });
+
+app.use(express.static(__dirname + '/Unity'));
+app.get('/piano', (req, res) => {    
+    console.log('GET /');
+    res.sendFile(__dirname + '/Unity/index.html');
+});

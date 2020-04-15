@@ -4,20 +4,30 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Space_Invaders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
   </head>
-  <body style="text-align: center">
-    <canvas id="unity-canvas" style="width: 1280px; height: 720px; background: #231F20"></canvas>
+  <body style="text-align: center; display: flex; flex-direction: column; background-color: black;">
+    <h1 style="margin-top: 0.1vh; text-align: center; color:white; font-family: 'Raleway', sans-serif;">Space Invaders-based Game</h1>
+    <canvas id="unity-canvas" style="width: 1024px; height: 576px; background: #231F20; margin-left: auto; margin-right: auto;"></canvas>
     <script src="Build/Build-Web.loader.js"></script>
     <script>
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/Build-Web.data",
-        frameworkUrl: "Build/Build-Web.framework.js",
-        codeUrl: "Build/Build-Web.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "GawssCompany",
-        productName: "Space_Invaders",
-        productVersion: "1.0",
-      });
+      function detec() { 
+            var isMobile = window.orientation > -1; 
+            if(isMobile){
+              alert("Mobile inputs are not supported, please try on desktop"); 
+            }else{
+              createUnityInstance(document.querySelector("#unity-canvas"), {
+                dataUrl: "Build/Build-Web.data",
+                frameworkUrl: "Build/Build-Web.framework.js",
+                codeUrl: "Build/Build-Web.wasm",
+                streamingAssetsUrl: "StreamingAssets",
+                companyName: "GawssCompany",
+                productName: "Space_Invaders",
+                productVersion: "1.0",
+              });
+            }
+      };
+      detec();
     </script>
   </body>
 </html>

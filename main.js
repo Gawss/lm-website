@@ -13,6 +13,7 @@ const server = app.listen(process.env.PORT || SERVER_PORT, () => {
 
 
 app.use(express.static(__dirname + '/public/resources'));
+app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {    
     console.log('GET /');
     if(process.env.PORT != undefined){

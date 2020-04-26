@@ -27,3 +27,9 @@ app.get('/space_invaders', (req, res) => {
     console.log('GET /space_invaders');
     res.sendFile(__dirname + '/Unity/space_invaders/index.html');
 });
+
+app.use(express.static(__dirname + '/public/AR'));
+app.get('/AR', (req, res) => {    
+    console.log('GET /AR');
+    res.sendFile(__dirname + '/public/AR/AR.html');
+});

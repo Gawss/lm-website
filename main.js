@@ -23,6 +23,12 @@ app.get('/', (req, res) => {
     }
 });
 
+app.use(express.static(__dirname + '/public'));
+app.get('/luis', (req, res) => {    
+    console.log('GET /luis');
+    res.sendFile(__dirname + '/public/About/about.html');
+});
+
 app.use(express.static(__dirname + '/Unity/space_invaders'));
 app.get('/space_invaders', (req, res) => {    
     console.log('GET /space_invaders');

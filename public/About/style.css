@@ -1,0 +1,94 @@
+*{
+    font-family: "Lato", sans-serif;;
+}
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header {
+    margin: 0;
+    padding: 0 24px;
+    display: block;
+    box-sizing: border-box;
+    background-color: #00000A;
+    height: 100vh;
+    width: 100vw;
+    color: #ffffff;
+}
+
+@media (min-width: 1824px){
+    header {
+        padding-left: 25vw;
+    }
+}
+
+@media (min-width: 1224px){
+    header {
+        padding-left: 20vw;
+    }
+}
+
+header h1 {
+    margin: 0;
+    padding: 25vh 0 0;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    animation-duration: 4s;
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+header p {
+    margin: 0;
+    padding: 1.5rem 0 15vh;
+    opacity: 0;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    animation-duration: 4s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    letter-spacing: 1px;
+}
+
+@media (min-width: 768px){
+    p {
+        line-height: 2rem;
+    }
+}
+
+@media (min-width: 768px){
+    header p {
+        padding-bottom: 20vh;
+    }
+}
+
+.Main{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.Main_About{
+    height: 100vh;
+    width: 100vw;
+}
+
+.Main_Projects{
+    height: 100vh;
+    width: 100vw;
+}
+
+@media (min-width: 768px){
+    h1, h2 {
+        font-size: 4rem;
+    }
+}

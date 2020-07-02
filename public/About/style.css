@@ -1,6 +1,11 @@
 *{
-    font-family: "Lato", sans-serif;;
+    font-family: "Lato", sans-serif;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -75,11 +80,78 @@ header p {
     display: flex;
     flex-direction: column;
     background-color: white;
+    color: black;
 }
 
 .Main_About{
     height: 100vh;
     width: 100vw;
+    display: flex;
+}
+
+.Main_About_Photo{
+    height: 500px;
+    width: auto;
+    padding-left: 15vw;
+    padding-top: 15vh;
+}
+
+.Main_About_Description{
+    padding-top: 15vh;
+    padding-left: 5vw;
+    padding-right: 15vw;
+}
+
+.Main_About_Description h1 h2 h3{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.Main_About_Description h2{
+    font-weight: lighter;
+}
+
+.Main_About_Description h3{
+    margin-block-start: initial;
+    font-weight: lighter;
+}
+
+.Main_About_Description p{
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.Main_About_Description_WhatNext{
+    display: flex;
+    width: 100%;
+}
+
+.Main_About_Description_WhatNext :nth-child(2){
+    margin-left: 5vw;
+}
+
+.Main_About_Description_WhatNext a{
+    text-decoration: none;
+}
+
+/* unvisited link */
+.Main_About_Description_WhatNext a:link {
+    color: black;
+}
+
+/* visited link */
+.Main_About_Description_WhatNext a:visited {
+    color: black;
+}
+
+/* mouse over link */
+.Main_About_Description_WhatNext a:hover {
+    color: rgb(127, 0, 231);
+}
+
+/* selected link */
+.Main_About_Description_WhatNext a:active {
+    color: rgb(127, 0, 231);
 }
 
 .Main_Projects{
@@ -88,7 +160,7 @@ header p {
 }
 
 @media (min-width: 768px){
-    h1, h2 {
+    header h1, header h2 {
         font-size: 4rem;
     }
 }

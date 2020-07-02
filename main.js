@@ -24,7 +24,6 @@ app.get('/', (req, res) => {
 });
 
 app.use(express.static(__dirname + '/public/About'));
-app.use(express.static(__dirname + '/public'));
 app.get('/luis', (req, res) => {    
     console.log('GET /luis');
     res.sendFile(__dirname + '/public/About/about.html');

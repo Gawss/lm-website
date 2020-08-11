@@ -14,7 +14,7 @@ body{
 
 header {
     margin: 0;
-    padding: 0 24px;
+    /* padding: 0 24px; */
     display: block;
     box-sizing: border-box;
     background-color: #00000A;
@@ -155,8 +155,83 @@ header p {
 }
 
 .Main_Projects{
-    height: 100vh;
-    width: 100vw;
+    height: 100vh;    
+    display: flex;
+    flex-direction: column;
+}
+
+.Main_Projects_WrapContainer{
+    padding-right: 15vw;
+    padding-left: 15vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 80vh;
+}
+
+.Main_Projects_WrapContainer > .Main_Projects_Element {
+    flex: 1 1 50%; /*grow | shrink | basis */
+}
+
+.Main_Projects_Element{
+    background-color: rgb(80, 0, 155);
+    max-height: 40vh;
+}
+
+.grow{
+    transition: all .2s ease-in-out;
+}
+
+.Main_Projects_Element :hover{
+    filter: sepia(60%);    
+}
+
+.Main_Projects_Element_BG{
+    object-fit: fill;
+    max-width: 100%;
+    max-height: 40vh;
+    width: 100%;
+    height: 100%;    
+}
+
+.Main_Projects_Element_Title{
+    position: relative;
+    background-color: rgba(255,255,255,0.8);
+    bottom: 5.4vh;
+    height: 5vh;
+    width: 100%;
+    font-size: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Main_Projects h1{
+    margin-left: 15vw;
+}
+
+.Bottom{
+    background-color: #00000A;
+    display: flex;
+    color: #ffffff;
+    height: 15vh;
+    align-items: center;
+    padding-left: 15vw;
+    font-size: small;
+}
+
+.Bottom :last-child{
+    margin-right: 15vw;
+    margin-left: auto;
+}
+
+.Bottom :first-child{
+    margin-right: 50px;
+}
+
+.Bottom a{
+    text-decoration: none;
+    color: white;
 }
 
 @media (min-width: 768px){

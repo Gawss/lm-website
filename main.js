@@ -40,3 +40,9 @@ app.get('/AR', (req, res) => {
     console.log('GET /AR');
     res.sendFile(__dirname + '/public/AR/AR.html');
 });
+
+app.use(express.static(__dirname + '/public/site/assets'));
+app.use(express.static(__dirname + '/public/site'));
+app.get('/lm', (req, res) => {    
+    res.sendFile(__dirname + '/public/site/index.html');
+});

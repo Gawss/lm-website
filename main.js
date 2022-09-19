@@ -46,3 +46,8 @@ app.use(express.static(__dirname + '/public/site'));
 app.get('/lm', (req, res) => {    
     res.sendFile(__dirname + '/public/site/index.html');
 });
+
+app.use(express.static(__dirname + '/Unity/DTOWN_WebGL'));
+app.get('/dtown', (req, res) => {    
+    res.sendFile(__dirname + '/Unity/DTOWN_WebGL/index.html');
+});

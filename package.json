@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Gawss/lm-website#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.1",
     "file-system": "^2.2.2",
     "socket.io": "^2.5.0"

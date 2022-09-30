@@ -1,6 +1,12 @@
 const express = require('express');
 
+// const cors = require('cors');
+
 const app = express();
+
+// app.use(cors({
+//     origin: '*'
+// }));
 
 let SERVER_PORT = 1337;
 
@@ -48,14 +54,15 @@ app.get('/lm', (req, res) => {
 });
 
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", '*');
+//     res.header("Access-Control-Allow-Credentials", true);
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+//     next();
+// });
 app.use(express.static(__dirname + '/Unity/DTOWN_WebGL'));
-app.get('/dtown', (req, res) => {    
+app.get('/dtown', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://firebasestorage.googleapis.com");
     res.sendFile(__dirname + '/Unity/DTOWN_WebGL/index.html');
 });

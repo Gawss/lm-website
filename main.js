@@ -53,16 +53,13 @@ app.get('/lm', (req, res) => {
     res.sendFile(__dirname + '/public/site/index.html');
 });
 
-
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", '*');
-//     res.header("Access-Control-Allow-Credentials", true);
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-//     next();
-// });
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+  });
 app.use(express.static(__dirname + '/Unity/DTOWN_WebGL'));
 app.get('/dtown', (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://firebasestorage.googleapis.com");
     res.sendFile(__dirname + '/Unity/DTOWN_WebGL/index.html');
 });

@@ -1,7 +1,6 @@
 {
   "name": "lm-webpage",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "start": "node main.js"
@@ -29,5 +28,6 @@
   },
   "engines": {
     "node": "13.6.0"
-  }
+  },
+  "description": ""
 }

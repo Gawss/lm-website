@@ -1,6 +1,9 @@
 {
-  "projects": [
-    "Projects/HorizontalText.json",
-    "Projects/Image.json"
-  ]
+    "projects": [
+        "Projects/HorizontalText.json",
+        "Projects/Image.json",
+        "Projects/master_in_science.json",
+        "Projects/master_in_visual_arts_and_multimedia.json",
+        "Projects/digital_entertainment_engineering.json"
+    ]
 }

@@ -1,0 +1,28 @@
+{
+  "id": "0",
+  "projectName": "Master in Science",
+  "description": "Cognitive Systems and Interactive Media",
+  "thumbnailPath": "Images/Thumbnails/",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Institution:\",\"content\":\"Universitat Pompeu Fabra\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Director:\",\"content\":\"Narcís Parés\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Year:\",\"content\":\"2019-2020\"}"
+    }
+  ],
+  "accessories": [
+    {
+      "name": "Accessories/SquareGraduationCap.prefab",
+      "payload": ""
+    }
+  ]
+}

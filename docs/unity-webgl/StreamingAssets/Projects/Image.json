@@ -1,0 +1,14 @@
+{
+  "id": "1",
+  "projectName": "Image",
+  "description": "",
+  "thumbnailPath": "Images/Thumbnails/",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://media.revistagq.com/photos/5f8959bd54567c4e16ec6a46/master/pass/goku-futbolista.jpg\"}"
+    }
+  ]
+}

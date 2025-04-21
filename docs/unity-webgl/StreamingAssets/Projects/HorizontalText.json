@@ -1,0 +1,18 @@
+{
+  "id": "asdz",
+  "projectName": "4444",
+  "description": "",
+  "thumbnailPath": "Images/Thumbnails/",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Tools:\",\"content\":\"Unity, Blender, Git\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Duration\",\"content\":\"2 years\"}"
+    }
+  ]
+}

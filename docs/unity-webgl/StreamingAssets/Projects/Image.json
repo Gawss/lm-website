@@ -8,7 +8,7 @@
   "components": [
     {
       "type": "ProjectComponents/ImageComponent.prefab",
-      "payload": "{\"url\":\"https://media.revistagq.com/photos/5f8959bd54567c4e16ec6a46/master/pass/goku-futbolista.jpg\"}"
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/old/assets/images/XRBros.png\"}"
     }
   ]
 }

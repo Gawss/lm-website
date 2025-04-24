@@ -3,6 +3,7 @@
     <type fullname="GawssCompany.Portfolio.AccessoryCap" preserve="all" />
     <type fullname="GawssCompany.Portfolio.HorizontalTextComponent" preserve="all" />
     <type fullname="GawssCompany.Portfolio.ImageComponent" preserve="all" />
+    <type fullname="GawssCompany.Portfolio.ProjectColorItem" preserve="all" />
   </assembly>
   <assembly fullname="MaterialSymbols, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="com.convalise.UnityMaterialSymbols.MaterialSymbol" preserve="all" />
@@ -49,6 +50,7 @@
     <type fullname="UnityEngine.Font" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UI.AspectRatioFitter" preserve="all" />
     <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />
     <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.LayoutElement" preserve="all" />

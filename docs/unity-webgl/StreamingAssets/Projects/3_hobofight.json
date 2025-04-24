@@ -1,0 +1,33 @@
+{
+  "id": "4",
+  "projectName": "Hobo Fight!",
+  "subtitle": "Global Game Jam 2019 | Indie Prize USA 2019",
+  "description": "Party king of the hill game which allows Hobos to fight each other in order to win a house in town. The more time you spend inside the house, the closer to transform it into your home.",
+  "thumbnailPath": "",
+  "tags": ["Unity"],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/indieprize_ggj.png\",\"width\":\"256\",\"height\":\"128\"}"
+    },
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/hobos.png\",\"width\":\"256\",\"height\":\"128\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Position:\",\"content\":\"Co-Founder and Unity Developer\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Technologies:\",\"content\":\"Unity, C#, Html, NodeJS, Photon\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2019\"}"
+    }
+  ],
+  "accessories": [],
+  "colors": ["#16980D", "#FFFFFF", "#3366FF"]
+}

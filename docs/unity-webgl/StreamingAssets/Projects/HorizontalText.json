@@ -14,5 +14,10 @@
       "type": "ProjectComponents/HorizontalText.prefab",
       "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Duration\",\"content\":\"2 years\"}"
     }
+  ],
+  "colors": [
+    "#FF5733",
+    "00FF00",
+    "#3366FF"
   ]
 }

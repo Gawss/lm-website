@@ -1,0 +1,19 @@
+{
+  "id": "1",
+  "projectName": "Image",
+  "description": "",
+  "thumbnailPath": "Images/Thumbnails/",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/old/assets/images/XRBros.png\"}"
+    }
+  ],
+  "colors": [
+    "#FF5733",
+    "00FF00",
+    "#3366FF"
+  ]
+}

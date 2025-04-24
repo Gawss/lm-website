@@ -1,0 +1,29 @@
+{
+  "id": "1",
+  "projectName": "Master of Arts in Visual and Multimedia",
+  "description": "Telepresencia en las artes visuales y multimedia: cómo potenciar las interacciones a distancia",
+  "thumbnailPath": "Images/Thumbnails/",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Institution:\",\"content\":\"Universitat Politécnica de Valencia\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Year:\",\"content\":\"2022-2024\"}"
+    }
+  ],
+  "accessories": [
+    {
+      "name": "Accessories/SquareGraduationCap.prefab",
+      "payload": ""
+    }
+  ],
+  "colors": [
+    "#FF5733",
+    "00FF00",
+    "#3366FF"
+  ]
+}

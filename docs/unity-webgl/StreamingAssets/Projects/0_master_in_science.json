@@ -1,22 +1,31 @@
 {
   "id": "0",
-  "projectName": "Master in Science",
-  "description": "Cognitive Systems and Interactive Media",
+  "projectName": "Master of Science",
+  "subtitle": "Cognitive Systems and Interactive Media",
+  "description": "Conducted multiple experiments aimed to the analysis of declarative and behavioral data to define new interaction paradigms within a projective AR experience in the Museu d'Història de Barcelona (MUHBA).",
   "thumbnailPath": "Images/Thumbnails/",
   "tags": [],
   "sceneName": "",
   "components": [
     {
-      "type": "ProjectComponents/HorizontalText.prefab",
-      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Institution:\",\"content\":\"Universitat Pompeu Fabra\"}"
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/degree_icon.png\",\"width\":\"256\",\"height\":\"128\"}"
+    },
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/master_upf.png\",\"width\":\"256\",\"height\":\"128\"}"
     },
     {
       "type": "ProjectComponents/HorizontalText.prefab",
-      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Director:\",\"content\":\"Narcís Parés\"}"
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Organization:\",\"content\":\"Universitat Pompeu Fabra\"}"
     },
     {
       "type": "ProjectComponents/HorizontalText.prefab",
-      "payload": "{\"icon\":\"f81c\",\"subtitle\":\"Year:\",\"content\":\"2019-2020\"}"
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Director:\",\"content\":\"Narcís Parés\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2019-2020\"}"
     }
   ],
   "accessories": [
@@ -24,5 +33,6 @@
       "name": "Accessories/SquareGraduationCap.prefab",
       "payload": ""
     }
-  ]
+  ],
+  "colors": ["#C80F2E", "#FFFFFF", "#0D47A1"]
 }

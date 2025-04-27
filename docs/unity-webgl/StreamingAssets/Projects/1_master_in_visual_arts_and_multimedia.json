@@ -1,6 +1,6 @@
 {
-  "id": "1",
-  "projectName": "Master of Fine Arts",
+  "id": 1,
+  "name": "Master of Fine Arts",
   "subtitle": "Visual Arts and Multimedia",
   "description": "Research, concept and development of an application for immersive teleconferences, enhancing remote interactions through visual arts and realistic interconnected media.",
   "thumbnailPath": "Images/Thumbnails/",
@@ -25,7 +25,7 @@
     },
     {
       "type": "ProjectComponents/HorizontalText.prefab",
-      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2022-2024\"}"
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2021-2024\"}"
     }
   ],
   "accessories": [
@@ -34,5 +34,9 @@
       "payload": ""
     }
   ],
-  "colors": ["#010101", "#FFFFFF", "#3366FF"]
+  "colors": [
+    "#010101",
+    "#FFFFFF",
+    "#3366FF"
+  ]
 }

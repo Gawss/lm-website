@@ -1,6 +1,6 @@
 {
-  "id": "2",
-  "projectName": "Bachelor in Engineering",
+  "id": 2,
+  "name": "Bachelor in Engineering",
   "subtitle": "Entertainment Design and Technology",
   "description": "Mix of Computer Science, Design, and Storytelling. Specialized in game development, immersive media, and digital content production using both technical and creative tools.",
   "thumbnailPath": "Images/Thumbnails/",
@@ -34,5 +34,9 @@
       "payload": ""
     }
   ],
-  "colors": ["#000000", "#FFCA45", "#3366FF"]
+  "colors": [
+    "#000000",
+    "#FFCA45",
+    "#3366FF"
+  ]
 }

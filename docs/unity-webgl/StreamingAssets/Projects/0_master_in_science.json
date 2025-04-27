@@ -1,6 +1,6 @@
 {
-  "id": "0",
-  "projectName": "Master of Science",
+  "id": 0,
+  "name": "Master of Science",
   "subtitle": "Cognitive Systems and Interactive Media",
   "description": "Conducted multiple experiments aimed to the analysis of declarative and behavioral data to define new interaction paradigms within a projective AR experience in the Museu d'Història de Barcelona (MUHBA).",
   "thumbnailPath": "Images/Thumbnails/",
@@ -34,5 +34,9 @@
       "payload": ""
     }
   ],
-  "colors": ["#C80F2E", "#FFFFFF", "#0D47A1"]
+  "colors": [
+    "#C80F2E",
+    "#FFFFFF",
+    "#0D47A1"
+  ]
 }

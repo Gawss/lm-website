@@ -1,10 +1,12 @@
 {
-  "id": "4",
-  "projectName": "Hobo Fight!",
+  "id": 3,
+  "name": "Hobo Fight!",
   "subtitle": "Global Game Jam 2019 | Indie Prize USA 2019",
   "description": "Party king of the hill game which allows Hobos to fight each other in order to win a house in town. The more time you spend inside the house, the closer to transform it into your home.",
   "thumbnailPath": "",
-  "tags": ["Unity"],
+  "tags": [
+    "Unity"
+  ],
   "sceneName": "",
   "components": [
     {
@@ -29,5 +31,9 @@
     }
   ],
   "accessories": [],
-  "colors": ["#16980D", "#FFFFFF", "#3366FF"]
+  "colors": [
+    "#16980D",
+    "#FFFFFF",
+    "#3366FF"
+  ]
 }

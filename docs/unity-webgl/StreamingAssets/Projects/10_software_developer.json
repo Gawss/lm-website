@@ -1,17 +1,33 @@
 {
-  "id": "11",
-  "projectName": "SOFTWARE DEVELOPER",
-  "description": "WIZARD FUN FACTORY",
+  "id": 10,
+  "name": "SOFTWARE DEVELOPER",
+  "subtitle": "Internship",
+  "description": "Definition and implementation of low-level protocols to communicate interactive installations, including lights control, sensors, and Unity applications.",
   "thumbnailPath": "",
-  "tags": [
-    "Unity"
-  ],
+  "tags": ["Unity"],
   "sceneName": "",
-  "components": [],
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/pikpok_logo.png\",\"width\":\"256\",\"height\":\"256\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Organization:\",\"content\":\"PikPok | Wizard Fun Factory\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Director:\",\"content\":\"Natalia Alvarez\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Supervisor:\",\"content\":\"Carlos Arango\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2017\"}"
+    }
+  ],
   "accessories": [],
-  "colors": [
-    "#FF5733",
-    "00FF00",
-    "#3366FF"
-  ]
+  "colors": ["#FAA832", "#505A64", "#3366FF"]
 }

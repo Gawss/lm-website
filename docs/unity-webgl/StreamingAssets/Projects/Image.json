@@ -1,6 +1,6 @@
 {
-  "id": "1",
-  "projectName": "Image",
+  "id": 100,
+  "name": "Image",
   "description": "",
   "thumbnailPath": "Images/Thumbnails/",
   "tags": [],

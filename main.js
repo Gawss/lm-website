@@ -1,8 +1,11 @@
 const express = require("express");
+const path = require("path");
+const fs = require("fs");
 
 // const cors = require('cors');
 
 const app = express();
+const docsDir = path.join(__dirname, "docs");
 
 // app.use(cors({
 //     origin: '*'
@@ -68,6 +71,19 @@ app.use(function (req, res, next) {
 app.use(express.static(__dirname + "/Unity/DTOWN_WebGL"));
 app.get("/dtown", (req, res) => {
   res.sendFile(__dirname + "/Unity/DTOWN_WebGL/index.html");
+});
+
+// Middleware: disable cache *only if the file changed*
+app.use((req, res, next) => {
+  const filePath = path.join(docsDir, req.url.split("?")[0]);
+
+  if (fs.existsSync(filePath)) {
+    res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.set("Pragma", "no-cache");
+    res.set("Expires", "0");
+  }
+
+  next();
 });
 
 app.use(express.static(__dirname + "/docs"));

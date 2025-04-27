@@ -1,0 +1,42 @@
+{
+  "id": 2,
+  "name": "Bachelor in Engineering",
+  "subtitle": "Entertainment Design and Technology",
+  "description": "Mix of Computer Science, Design, and Storytelling. Specialized in game development, immersive media, and digital content production using both technical and creative tools.",
+  "thumbnailPath": "Images/Thumbnails/",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/degree_upb.png\",\"width\":\"256\",\"height\":\"128\"}"
+    },
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/upb.png\",\"width\":\"256\",\"height\":\"128\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Organization:\",\"content\":\"Universidad Pontificia Bolivariana\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Focus:\",\"content\":\"Interactive Experiences\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2014-2018\"}"
+    }
+  ],
+  "accessories": [
+    {
+      "name": "Accessories/SquareGraduationCap.prefab",
+      "payload": ""
+    }
+  ],
+  "colors": [
+    "#000000",
+    "#FFCA45",
+    "#3366FF"
+  ]
+}

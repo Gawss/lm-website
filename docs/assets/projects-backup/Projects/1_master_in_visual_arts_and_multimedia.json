@@ -1,0 +1,42 @@
+{
+  "id": 1,
+  "name": "Master of Fine Arts",
+  "subtitle": "Visual Arts and Multimedia",
+  "description": "Research, concept and development of an application for immersive teleconferences, enhancing remote interactions through visual arts and realistic interconnected media.",
+  "thumbnailPath": "Images/Thumbnails/",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/degree_icon_upv.png\",\"width\":\"256\",\"height\":\"128\"}"
+    },
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/master_upv.png\",\"width\":\"256\",\"height\":\"128\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Organization:\",\"content\":\"Universitat Politècnica de Valéncia\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Director:\",\"content\":\"Sanmartín Piquer, Francisco Javier\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2021-2024\"}"
+    }
+  ],
+  "accessories": [
+    {
+      "name": "Accessories/SquareGraduationCap.prefab",
+      "payload": ""
+    }
+  ],
+  "colors": [
+    "#010101",
+    "#FFFFFF",
+    "#3366FF"
+  ]
+}

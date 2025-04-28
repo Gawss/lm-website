@@ -1,0 +1,29 @@
+{
+  "id": 6,
+  "name": "Deeptown Metaverse",
+  "subtitle": "Entrepreneurship | Startup",
+  "description": "XR platform made for creators to collaborate and share experiences, connecting users from VR headsets, AR, mobile, and desktop.",
+  "thumbnailPath": "",
+  "tags": ["Unity"],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/dtown.png\",\"width\":\"256\",\"height\":\"300\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Position:\",\"content\":\"CTO, Co-Founder and Lead Developer\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Technologies:\",\"content\":\"Unity, C#, Html, NodeJS, Photon\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2020-2022\"}"
+    }
+  ],
+  "accessories": [],
+  "colors": ["#211C7A", "#F0F0F0", "#3366FF"]
+}

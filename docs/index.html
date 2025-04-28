@@ -22,7 +22,7 @@
       id="unity-canvas"
       style="width: 100dvw; height: 100dvh; background: #231f20; margin: 0"
     ></canvas>
-    <script src="unity-webgl/Build/unity-webgl.loader.js"></script>
+    <script src="unity-webgl-gzip-fallback/Build/unity-webgl-gzip-fallback.loader.js"></script>
     <script>
       // function detect() {
       //   var isMobile = window.orientation > -1;
@@ -52,16 +52,29 @@
       } else {
         // Load Unity
         const script = document.createElement("script");
-        script.src = "unity-webgl/Build/unity-webgl.loader.js";
+        script.src =
+          "unity-webgl-gzip-fallback/Build/unity-webgl-gzip-fallback.loader.js";
         script.onload = () => {
           createUnityInstance(document.querySelector("#unity-canvas"), {
-            dataUrl: "unity-webgl/Build/unity-webgl.data",
-            frameworkUrl: "unity-webgl/Build/unity-webgl.framework.js",
-            codeUrl: "unity-webgl/Build/unity-webgl.wasm",
-            streamingAssetsUrl: "unity-webgl/StreamingAssets",
+            dataUrl:
+              "unity-webgl-gzip-fallback/Build/unity-webgl-gzip-fallback.data.unityweb",
+            frameworkUrl:
+              "unity-webgl-gzip-fallback/Build/unity-webgl-gzip-fallback.framework.js.unityweb",
+            workerUrl:
+              "unity-webgl-gzip-fallback/Build/unity-webgl-gzip-fallback.worker.js.unityweb",
+            codeUrl:
+              "unity-webgl-gzip-fallback/Build/unity-webgl-gzip-fallback.wasm.unityweb",
+            streamingAssetsUrl: "unity-webgl-gzip-fallback/StreamingAssets",
             companyName: "GawssCompany",
             productName: "Portfolio",
             productVersion: "0.1",
+            // dataUrl: "unity-webgl/Build/unity-webgl.data",
+            // frameworkUrl: "unity-webgl/Build/unity-webgl.framework.js",
+            // codeUrl: "unity-webgl/Build/unity-webgl.wasm",
+            // streamingAssetsUrl: "unity-webgl/StreamingAssets",
+            // companyName: "GawssCompany",
+            // productName: "Portfolio",
+            // productVersion: "0.1",
           });
         };
         document.body.appendChild(script);

@@ -1,0 +1,38 @@
+{
+  "name": "Artificial Intelligence with Python",
+  "id": 11,
+  "subtitle": "Online Course",
+  "description": "Completed the online course part of the Computer Science 50 (CS50) program offered by the Harvard Online Learning Initiative.",
+  "thumbnailPath": "Images/Thumbnails/",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/online_course_harvard.png\",\"width\":\"256\",\"height\":\"128\"}"
+    },
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/harvardX.png\",\"width\":\"256\",\"height\":\"128\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Organization:\",\"content\":\"Harvard University\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Professor:\",\"content\":\"David J, Malan\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2021\"}"
+    }
+  ],
+  "accessories": [
+    {
+      "name": "Accessories/SquareGraduationCap.prefab",
+      "payload": ""
+    }
+  ],
+  "colors": ["#A51C30", "#FFFFFF", "#3366FF"]
+}

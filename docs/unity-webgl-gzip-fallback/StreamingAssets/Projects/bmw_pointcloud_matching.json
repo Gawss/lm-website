@@ -1,0 +1,16 @@
+{
+    "name": "BMW Pointcloud Matching",
+    "id": 20,
+    "subtitle": "",
+    "description": "",
+    "thumbnailPath": "",
+    "tags": [],
+    "sceneName": "",
+    "components": [],
+    "accessories": [],
+    "colors": [
+        "#D00092",
+        "#FFFFFF",
+        "#000DCC"
+    ]
+}

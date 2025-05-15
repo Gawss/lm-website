@@ -1,0 +1,29 @@
+{
+  "name": "Amigo Runner for PHILIPS",
+  "id": 22,
+  "subtitle": "Infinite Runner inspired by Barcelona city",
+  "description": "Customize your avatar, race through iconic neighborhoods, and try on outfits in real-time via AR. Customized and branded for PHILIPS, presented at IFA in Berlin and CES in Las Vegas.",
+  "thumbnailPath": "",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/amigo_runner.png\",\"width\":\"256\",\"height\":\"300\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Position:\",\"content\":\"Lead Developer\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Technologies:\",\"content\":\"Unity, Js, Html, Ready Player Me\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2024\"}"
+    }
+  ],
+  "accessories": [],
+  "colors": ["#DBD4B7", "#1E5FA8", "#000DCC"]
+}

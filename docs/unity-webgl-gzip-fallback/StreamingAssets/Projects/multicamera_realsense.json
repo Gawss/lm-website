@@ -1,0 +1,16 @@
+{
+    "name": "Multicamera Realsense",
+    "id": 18,
+    "subtitle": "",
+    "description": "VFX Pointclouds",
+    "thumbnailPath": "",
+    "tags": [],
+    "sceneName": "",
+    "components": [],
+    "accessories": [],
+    "colors": [
+        "#D00092",
+        "#FFFFFF",
+        "#000DCC"
+    ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Adele's Wayfinding Map",
+  "id": 28,
+  "subtitle": "Ten-date residency in August 2024",
+  "description": "Taking place in the open-air venue at Munich Messe, hosting up to 80,000 attendees per night and totaling 730,000 visitors; we developed a web-based interactive map that seamlessly integrates with the onsite environment.",
+  "thumbnailPath": "Images/Thumbnails/",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/adele_map.png\",\"width\":\"256\",\"height\":\"300\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Position:\",\"content\":\"Lead Developer\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Technologies:\",\"content\":\"Three.js, Js, Html, Google API\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2024\"}"
+    }
+  ],
+  "accessories": [],
+  "colors": ["#252525", "#E1B871", "#3366FF"]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Samsung Black Weeks 2022",
+  "id": 5,
+  "subtitle": "Design and development of 5 different Web Games",
+  "description": "Captivated 750.000 players in 16 countries across Europe. Compare to the year before, this meant +400% conversion rate and +24% of orders! \n\nMultilingual CMS (+10 languages) and individual voucher creation per country.",
+  "thumbnailPath": "",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/bw_2022.png\",\"width\":\"256\",\"height\":\"300\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Position:\",\"content\":\"Lead Developer\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Technologies:\",\"content\":\"Unity, WebGL, Js, Html\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2022\"}"
+    }
+  ],
+  "accessories": [],
+  "colors": ["#A084DD", "#DCDBD8", "#000DCC"]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Samsung Galaxy Flip",
+  "id": 6,
+  "subtitle": "Launch of the Galaxy Z Flip 5",
+  "description": "Develop a classic but fun retro-future style Pinball game for Web and Windows. Players were able to take part in a scoreboard and win, either from physical stores across Europe or directly on Web from the Samsung site.",
+  "thumbnailPath": "",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/s_flipper.png\",\"width\":\"256\",\"height\":\"300\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Position:\",\"content\":\"Lead Developer\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Technologies:\",\"content\":\"Unity, WebGL, Js, Html\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2023\"}"
+    }
+  ],
+  "accessories": [],
+  "colors": ["#43A89C", "#323831", "#000DCC"]
+}

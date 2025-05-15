@@ -1,0 +1,29 @@
+{
+  "name": "Samsung Black Weeks 2023",
+  "id": 4,
+  "subtitle": "Designed, developed and launched web games",
+  "description": "During the 17 days of Samsung Black Week, visitors could discover 6 immersive games; allowing people across <b>27 European countries</b> to play and instantly win Vouchers redeemable in Samsung's web store.\n\n<b>1.1M Players</b> during Campaign | <b>+20%</b> Revenue | <b>+63,5%</b> Conversion Rate | <b>+430%</b> Retention Rate.",
+  "thumbnailPath": "",
+  "tags": [],
+  "sceneName": "",
+  "components": [
+    {
+      "type": "ProjectComponents/ImageComponent.prefab",
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/bw_2023.png\",\"width\":\"256\",\"height\":\"300\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"e1a0\",\"subtitle\":\"Position:\",\"content\":\"Lead Developer\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"f368\",\"subtitle\":\"Technologies:\",\"content\":\"Unity, WebGL, Js, Html\"}"
+    },
+    {
+      "type": "ProjectComponents/HorizontalText.prefab",
+      "payload": "{\"icon\":\"ebcc\",\"subtitle\":\"Year:\",\"content\":\"2023\"}"
+    }
+  ],
+  "accessories": [],
+  "colors": ["#13112B", "#FDA4F7", "#000DCC"]
+}

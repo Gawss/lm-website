@@ -11,7 +11,7 @@
   "components": [
     {
       "type": "ProjectComponents/ImageComponent.prefab",
-      "payload": "{\"url\":\"http://localhost:1337/assets/images/bw_2022.png\",\"width\":\"256\",\"height\":\"300\"}"
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/bw_2022.png\",\"width\":\"256\",\"height\":\"300\"}"
     },
     {
       "type": "ProjectComponents/HorizontalText.prefab",

@@ -4,12 +4,14 @@
   "subtitle": "Designed, developed, and launched web games",
   "description": "Allowed Samsung customers across <b>28 European countries</b> to experience key AI features—such as Upscaling, Photo Assist, or Circle to Search.\n\nWith full flexibility and high impact, the games once again delivered a major brand success story.",
   "thumbnailPath": "",
-  "tags": ["work"],
+  "tags": [
+    "work"
+  ],
   "sceneName": "",
   "components": [
     {
       "type": "ProjectComponents/ImageComponent.prefab",
-      "payload": "{\"url\":\"http://localhost:1337/assets/images/bw_2024.png\",\"width\":\"256\",\"height\":\"300\"}"
+      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/bw_2024.png\",\"width\":\"256\",\"height\":\"300\"}"
     },
     {
       "type": "ProjectComponents/HorizontalText.prefab",

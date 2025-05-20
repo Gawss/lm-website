@@ -4,7 +4,9 @@
   "subtitle": "Visual Arts and Multimedia",
   "description": "Research, concept and development of an application for immersive teleconferences, enhancing remote interactions through visual arts and realistic interconnected media.",
   "thumbnailPath": "Images/Thumbnails/",
-  "tags": [],
+  "tags": [
+    "education"
+  ],
   "sceneName": "",
   "components": [
     {

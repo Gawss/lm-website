@@ -4,7 +4,10 @@
   "subtitle": "VR Minigame",
   "description": "Exploring the general requirements to publish VR Games in SideQuest alongside with gesture recognition in VR. Use the \"magic torch\" to cast fireballs and attack the enemies. Accumulate as much victory points as you can.",
   "thumbnailPath": "",
-  "tags": ["Unity"],
+  "tags": [
+    "Unity",
+    "personal"
+  ],
   "sceneName": "",
   "components": [
     {
@@ -25,5 +28,9 @@
     }
   ],
   "accessories": [],
-  "colors": ["#22252C", "#FD5A2B", "#3366FF"]
+  "colors": [
+    "#22252C",
+    "#FD5A2B",
+    "#3366FF"
+  ]
 }

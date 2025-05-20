@@ -4,7 +4,10 @@
   "subtitle": "Audiovisual Essay",
   "description": "Collaboration between human + machine, in fact, it can generate new essays from every input phrase. This application aims to show some use cases of Ai as a video-making tool.",
   "thumbnailPath": "",
-  "tags": ["Unity"],
+  "tags": [
+    "Unity",
+    "personal"
+  ],
   "sceneName": "",
   "components": [
     {
@@ -25,5 +28,9 @@
     }
   ],
   "accessories": [],
-  "colors": ["#004673", "#4BEBF8", "#3366FF"]
+  "colors": [
+    "#004673",
+    "#4BEBF8",
+    "#3366FF"
+  ]
 }

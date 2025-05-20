@@ -4,7 +4,10 @@
   "subtitle": "Global Game Jam 2017",
   "description": "Tower defense game controlled using Ultrasonic sensors. Also optimized and re-written to fit in less than 250kb so it could run in the Gameduino; exposing the possibilities of a low-cost Arduino-based console for experimental interactions with exchangeable controllers.",
   "thumbnailPath": "",
-  "tags": ["Unity"],
+  "tags": [
+    "Unity",
+    "personal"
+  ],
   "sceneName": "",
   "components": [
     {
@@ -25,5 +28,9 @@
     }
   ],
   "accessories": [],
-  "colors": ["#E40000", "#000000", "#3366FF"]
+  "colors": [
+    "#E40000",
+    "#000000",
+    "#3366FF"
+  ]
 }

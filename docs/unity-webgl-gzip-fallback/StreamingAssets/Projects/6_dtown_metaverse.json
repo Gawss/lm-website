@@ -4,7 +4,10 @@
   "subtitle": "Entrepreneurship | Startup",
   "description": "XR platform made for creators to collaborate and share experiences, connecting users from VR headsets, AR, mobile, and desktop.",
   "thumbnailPath": "",
-  "tags": ["Unity"],
+  "tags": [
+    "Unity",
+    "work"
+  ],
   "sceneName": "",
   "components": [
     {
@@ -25,5 +28,9 @@
     }
   ],
   "accessories": [],
-  "colors": ["#211C7A", "#F0F0F0", "#3366FF"]
+  "colors": [
+    "#211C7A",
+    "#F0F0F0",
+    "#3366FF"
+  ]
 }

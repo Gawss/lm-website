@@ -4,12 +4,14 @@
   "subtitle": "Design and development of 5 different Web Games",
   "description": "Captivated 750.000 players in 16 countries across Europe. Compare to the year before, this meant +400% conversion rate and +24% of orders! \n\nMultilingual CMS (+10 languages) and individual voucher creation per country.",
   "thumbnailPath": "",
-  "tags": [],
+  "tags": [
+    "work"
+  ],
   "sceneName": "",
   "components": [
     {
       "type": "ProjectComponents/ImageComponent.prefab",
-      "payload": "{\"url\":\"https://raw.githubusercontent.com/Gawss/lm-website/refs/heads/master/docs/assets/images/bw_2022.png\",\"width\":\"256\",\"height\":\"300\"}"
+      "payload": "{\"url\":\"http://localhost:1337/assets/images/bw_2022.png\",\"width\":\"256\",\"height\":\"300\"}"
     },
     {
       "type": "ProjectComponents/HorizontalText.prefab",
@@ -25,5 +27,9 @@
     }
   ],
   "accessories": [],
-  "colors": ["#A084DD", "#DCDBD8", "#000DCC"]
+  "colors": [
+    "#A084DD",
+    "#DCDBD8",
+    "#000DCC"
+  ]
 }

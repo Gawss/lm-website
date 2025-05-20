@@ -4,7 +4,10 @@
   "subtitle": "Internship",
   "description": "Definition and implementation of low-level protocols to communicate interactive installations, including lights control, sensors, and Unity applications.",
   "thumbnailPath": "",
-  "tags": ["Unity"],
+  "tags": [
+    "Unity",
+    "work"
+  ],
   "sceneName": "",
   "components": [
     {
@@ -29,5 +32,9 @@
     }
   ],
   "accessories": [],
-  "colors": ["#FAA832", "#505A64", "#3366FF"]
+  "colors": [
+    "#FAA832",
+    "#505A64",
+    "#3366FF"
+  ]
 }

@@ -4,7 +4,9 @@
   "subtitle": "Online Course",
   "description": "Completed the online course part of the Computer Science 50 (CS50) program offered by the Harvard Online Learning Initiative.",
   "thumbnailPath": "Images/Thumbnails/",
-  "tags": [],
+  "tags": [
+    "education"
+  ],
   "sceneName": "",
   "components": [
     {
@@ -34,5 +36,9 @@
       "payload": ""
     }
   ],
-  "colors": ["#A51C30", "#FFFFFF", "#3366FF"]
+  "colors": [
+    "#A51C30",
+    "#FFFFFF",
+    "#3366FF"
+  ]
 }

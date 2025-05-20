@@ -4,7 +4,9 @@
   "subtitle": "Cognitive Systems and Interactive Media",
   "description": "Conducted multiple experiments aimed to the analysis of declarative and behavioral data to define new interaction paradigms within a projective AR experience in the Museu d'Història de Barcelona (MUHBA).",
   "thumbnailPath": "Images/Thumbnails/",
-  "tags": [],
+  "tags": [
+    "education"
+  ],
   "sceneName": "",
   "components": [
     {

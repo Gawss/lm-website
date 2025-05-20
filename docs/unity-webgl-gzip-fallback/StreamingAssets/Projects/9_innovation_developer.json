@@ -4,7 +4,10 @@
   "subtitle": "Full-time contract",
   "description": "• Designed prototypes, testing and deploying features like API networking, NLP for virtual assistants, and mobile apps.\n\n• User testing insights were used to guide product decisions and improvements. \n\n• Critical thinking helped identify and solve issues, while collaboration with teams ensured timely project completion using Scrum methodologies.",
   "thumbnailPath": "",
-  "tags": ["Unity"],
+  "tags": [
+    "Unity",
+    "work"
+  ],
   "sceneName": "",
   "components": [
     {
@@ -29,5 +32,9 @@
     }
   ],
   "accessories": [],
-  "colors": ["#00C16D", "#FFFFFF", "#3366FF"]
+  "colors": [
+    "#00C16D",
+    "#FFFFFF",
+    "#3366FF"
+  ]
 }

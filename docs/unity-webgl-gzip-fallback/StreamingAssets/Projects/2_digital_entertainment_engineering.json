@@ -4,7 +4,9 @@
   "subtitle": "Entertainment Design and Technology",
   "description": "Mix of Computer Science, Design, and Storytelling. Specialized in game development, immersive media, and digital content production using both technical and creative tools.",
   "thumbnailPath": "Images/Thumbnails/",
-  "tags": [],
+  "tags": [
+    "education"
+  ],
   "sceneName": "",
   "components": [
     {

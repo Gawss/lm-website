@@ -4,7 +4,10 @@
   "subtitle": "Online Course",
   "description": "Completed a 37 hours online course covering Game Development topics including Unity interfaces, animations, input & interaction, along with C# programming.",
   "thumbnailPath": "",
-  "tags": ["Unity"],
+  "tags": [
+    "Unity",
+    "education"
+  ],
   "sceneName": "",
   "components": [
     {
@@ -34,5 +37,9 @@
       "payload": ""
     }
   ],
-  "colors": ["#EC5250", "#E4F3F7", "#3366FF"]
+  "colors": [
+    "#EC5250",
+    "#E4F3F7",
+    "#3366FF"
+  ]
 }

@@ -1,0 +1,5 @@
+On Windows, open Windows Defender Firewall > Advanced Settings > Inbound Rules > Add Rule for port 1337.
+
+Check your IP from CMD using ipconfig
+
+then  Ethernet adapter Ethernet: IPv4 Address 
